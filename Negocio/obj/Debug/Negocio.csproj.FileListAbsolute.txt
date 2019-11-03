@@ -1,0 +1,11 @@
+E:\Proyectos [GIT]\TPC\Negocio\bin\Debug\Negocio.dll
+E:\Proyectos [GIT]\TPC\Negocio\bin\Debug\Negocio.pdb
+E:\Proyectos [GIT]\TPC\Negocio\bin\Debug\AccesoDatos.dll
+E:\Proyectos [GIT]\TPC\Negocio\bin\Debug\Dominio.dll
+E:\Proyectos [GIT]\TPC\Negocio\bin\Debug\AccesoDatos.pdb
+E:\Proyectos [GIT]\TPC\Negocio\bin\Debug\Dominio.pdb
+E:\Proyectos [GIT]\TPC\Negocio\obj\Debug\Negocio.csprojAssemblyReference.cache
+E:\Proyectos [GIT]\TPC\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+E:\Proyectos [GIT]\TPC\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+E:\Proyectos [GIT]\TPC\Negocio\obj\Debug\Negocio.dll
+E:\Proyectos [GIT]\TPC\Negocio\obj\Debug\Negocio.pdb

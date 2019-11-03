@@ -110,3 +110,9 @@ E:\Proyectos [GIT]\TPC\WebApp\obj\Debug\WebApp.csproj.CoreCompileInputs.cache
 E:\Proyectos [GIT]\TPC\WebApp\obj\Debug\WebApp.csproj.CopyComplete
 E:\Proyectos [GIT]\TPC\WebApp\obj\Debug\WebApp.dll
 E:\Proyectos [GIT]\TPC\WebApp\obj\Debug\WebApp.pdb
+E:\Proyectos [GIT]\TPC\WebApp\bin\AccesoDatos.dll
+E:\Proyectos [GIT]\TPC\WebApp\bin\Dominio.dll
+E:\Proyectos [GIT]\TPC\WebApp\bin\Negocio.dll
+E:\Proyectos [GIT]\TPC\WebApp\bin\AccesoDatos.pdb
+E:\Proyectos [GIT]\TPC\WebApp\bin\Dominio.pdb
+E:\Proyectos [GIT]\TPC\WebApp\bin\Negocio.pdb
