@@ -24,7 +24,7 @@ namespace Negocio
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
                 //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
-                comando.CommandText = "SELECT [Id],[Titulo] ,[Descripcion] ,[URLImagen] FROM[TP_WEB].[dbo].[Productos]";
+                comando.CommandText = "SELECT [Id],[Titulo] ,[Descripcion] ,[URLImagen] FROM[TPC_ESPINOLA].[dbo].[Productos]";
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
@@ -52,5 +52,36 @@ namespace Negocio
                 conexion.Close();
             }
         }
+
+        public void agregar(Producto nuevoProducto)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            //PoderSecundarioNegocio poderSecundarioNegocio = new PoderSecundarioNegocio();
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandType = System.Data.CommandType.Text;
+                //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
+                comando.CommandText = "  INSERT INTO [TPC_ESPINOLA].[dbo].[Productos] (Titulo,Descripcion,URLImagen) VALUES (@Titulo,@Descripcion,@URLImagen)";
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@Titulo", nuevoProducto.Titulo);
+                comando.Parameters.AddWithValue("@Descripcion", nuevoProducto.Descripcion);
+                comando.Parameters.AddWithValue("@URLImagen", nuevoProducto.URLImagen);
+                comando.Connection = conexion;
+                conexion.Open();
+                comando.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
     }
 }

@@ -70,7 +70,6 @@ namespace WebApp
         }
         public void CargarDatos(object sender, EventArgs e)
         {
-            string voucher = Session["Voucher" + Session.SessionID].ToString();
             ClienteNegocio negocioCliente = new ClienteNegocio();
             clienteLocal = new Cliente();
 

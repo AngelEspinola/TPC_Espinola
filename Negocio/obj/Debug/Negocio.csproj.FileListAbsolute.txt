@@ -9,3 +9,14 @@ E:\Proyectos [GIT]\TPC\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
 E:\Proyectos [GIT]\TPC\Negocio\obj\Debug\Negocio.csproj.CopyComplete
 E:\Proyectos [GIT]\TPC\Negocio\obj\Debug\Negocio.dll
 E:\Proyectos [GIT]\TPC\Negocio\obj\Debug\Negocio.pdb
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Negocio\bin\Debug\Negocio.dll
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Negocio\bin\Debug\Negocio.pdb
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Negocio\bin\Debug\AccesoDatos.dll
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Negocio\bin\Debug\Dominio.dll
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Negocio\bin\Debug\AccesoDatos.pdb
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Negocio\bin\Debug\Dominio.pdb
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Negocio\obj\Debug\Negocio.csprojAssemblyReference.cache
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Negocio\obj\Debug\Negocio.csproj.CoreCompileInputs.cache
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Negocio\obj\Debug\Negocio.csproj.CopyComplete
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Negocio\obj\Debug\Negocio.dll
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Negocio\obj\Debug\Negocio.pdb

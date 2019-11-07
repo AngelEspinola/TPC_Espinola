@@ -25,7 +25,7 @@ namespace Negocio
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
                 //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
-                comando.CommandText = "SELECT [Id],[DNI],[Nombre],[Apellido],[Email],[Direccion],[Ciudad],[CodigoPostal],[FechaRegistro] FROM[TP_WEB].[dbo].[Clientes]";
+                comando.CommandText = "SELECT [Id],[DNI],[Nombre],[Apellido],[Email],[Direccion],[Ciudad],[CodigoPostal],[FechaRegistro] FROM[TPC_ESPINOLA].[dbo].[Clientes]";
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
@@ -84,7 +84,7 @@ namespace Negocio
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
                 //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
-                comando.CommandText = "  INSERT INTO [TP_WEB].[dbo].[Clientes] (DNI,Nombre,Apellido,Email,Direccion,Ciudad,CodigoPostal,FechaRegistro) VALUES (@DNI,@Nombre,@Apellido,@Email,@Direccion,@Ciudad,@CodigoPostal,@FechaRegistro)";
+                comando.CommandText = "  INSERT INTO [TPC_ESPINOLA].[dbo].[Clientes] (DNI,Nombre,Apellido,Email,Direccion,Ciudad,CodigoPostal,FechaRegistro) VALUES (@DNI,@Nombre,@Apellido,@Email,@Direccion,@Ciudad,@CodigoPostal,@FechaRegistro)";
                 comando.Parameters.Clear();
                 comando.Parameters.AddWithValue("@DNI", nuevoCliente.DNI);
                 comando.Parameters.AddWithValue("@Nombre", nuevoCliente.Nombre.ToString());
