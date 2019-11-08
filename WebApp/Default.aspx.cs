@@ -13,5 +13,15 @@ namespace WebApp
         {
 
         }
+        protected void Clientes_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("Clientes.aspx");
+        }
+        protected void Productos_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("Productos.aspx");
+        }
     }
+
+    
 }
