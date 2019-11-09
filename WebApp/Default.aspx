@@ -21,6 +21,7 @@
         </div>--%>
             <asp:Button Text="Clientes" CssClass ="btn-dark" onclick ="Clientes_OnClick" runat="server" />
             <asp:Button Text="Productos" CssClass="btn-dark" onclick ="Productos_OnClick" runat="server" />
+            <asp:Button Text="Proveedores" CssClass="btn-dark" onclick ="Proveedores_OnClick" runat="server" />
         <div class="boton-imagen">
             <img src="https://st2.depositphotos.com/1794440/7673/v/950/depositphotos_76733111-stock-illustration-button-clients.jpg" alt="Alternate Text" />
             <img src="https://st2.depositphotos.com/1794440/7673/v/950/depositphotos_76733111-stock-illustration-button-clients.jpg" alt="Alternate Text" />

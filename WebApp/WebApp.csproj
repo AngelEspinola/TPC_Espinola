@@ -72,7 +72,9 @@
     <Content Include="Global.asax" />
     <Content Include="NuevoCliente.aspx" />
     <Content Include="NuevoProducto.aspx" />
+    <Content Include="NuevoProveedor.aspx" />
     <Content Include="Productos.aspx" />
+    <Content Include="Proveedores.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -107,6 +109,13 @@
     <Compile Include="NuevoProducto.aspx.designer.cs">
       <DependentUpon>NuevoProducto.aspx</DependentUpon>
     </Compile>
+    <Compile Include="NuevoProveedor.aspx.cs">
+      <DependentUpon>NuevoProveedor.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevoProveedor.aspx.designer.cs">
+      <DependentUpon>NuevoProveedor.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Principal.Master.cs">
       <DependentUpon>Principal.Master</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -122,6 +131,13 @@
       <DependentUpon>Productos.aspx</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Proveedores.aspx.cs">
+      <DependentUpon>Proveedores.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Proveedores.aspx.designer.cs">
+      <DependentUpon>Proveedores.aspx</DependentUpon>
+    </Compile>
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

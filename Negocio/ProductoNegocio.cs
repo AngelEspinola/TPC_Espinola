@@ -53,6 +53,37 @@ namespace Negocio
             }
         }
 
+        public void modificar(Producto nuevoProducto, int productoID)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            List<Producto> listado = new List<Producto>();
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandType = System.Data.CommandType.Text;
+                //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
+                comando.CommandText = "UPDATE [TPC_ESPINOLA].[dbo].[Productos] SET Titulo = @Titulo, Descripcion = @Descripcion, URLImagen = @URLImagen WHERE[TPC_ESPINOLA].[dbo].[Productos].ID = @ID";
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@Titulo", nuevoProducto.Titulo);
+                comando.Parameters.AddWithValue("@Descripcion", nuevoProducto.Descripcion);
+                comando.Parameters.AddWithValue("@URLImagen", nuevoProducto.URLImagen);
+                comando.Parameters.AddWithValue("@ID", productoID);
+                comando.Connection = conexion;
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
         public void agregar(Producto nuevoProducto)
         {
             SqlConnection conexion = new SqlConnection();
@@ -82,6 +113,31 @@ namespace Negocio
                 conexion.Close();
             }
         }
+        public void eliminar(string id)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandText = "delete from [TPC_ESPINOLA].[dbo].[Productos] where ID = @id";
+                comando.Connection = conexion;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@id", id);
+                conexion.Open();
+                comando.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
 
     }
 }

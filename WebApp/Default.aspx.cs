@@ -21,6 +21,10 @@ namespace WebApp
         {
             Response.Redirect("Productos.aspx");
         }
+        protected void Proveedores_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("Proveedores.aspx");
+        }
     }
 
     

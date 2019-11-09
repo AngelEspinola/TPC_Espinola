@@ -4,4 +4,25 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>Productos</h1>
     <asp:Button Text="Nuevo" onclick="Unnamed1_Click" runat="server" />
+    <h1>Lista Productos</h1>
+
+<%--    <asp:TextBox runat="server" AutoPostBack="true" Id="txtNumeroPokemon" OnTextChanged="txtNumeroPokemon_TextChanged" />--%>
+    <%--<asp:DropDownList runat="server" ID="cboPokemons" />--%>
+
+    <div class="card-columns" style="margin-left: 10px; margin-right: 10px;">
+
+        <% foreach (var item in listaProductos)
+            { %>
+        <div class="card">
+            <img src="<% = item.URLImagen %>" class="card-img-top" alt="...">
+            <div class="card-body">
+                <h5 class="card-title"><% = item.Titulo %></h5>
+                <p class="card-text"><% = item.Descripcion %></p>
+            </div>
+            <asp:Button class ="btn btn-dark" CommandArgument="<% = item.ID.ToString()%>" CommandName="ProductoID" OnClick="btnEliminar_OnClick" Text="Eliminar" runat="server" />
+            <a class="btn btn-dark" href="NuevoProducto.aspx?idpkm=<% = item.ID.ToString() %>">Modificar</a>
+            <%--<a class="btn btn-primary" CommandArgument='<%#Eval("product.ProductId")%>' CommandName="ThisBtnClick" onClick="btnEliminar_OnClick">Eliminar</a>--%>
+        </div>
+        <% } %>
+    </div>
 </asp:Content>

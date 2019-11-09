@@ -70,7 +70,7 @@ namespace Negocio
                 conexion.Close();
             }
         }
-    
+
         public void agregar(Proveedor nuevoProveedor)
         {
             SqlConnection conexion = new SqlConnection();
@@ -105,7 +105,7 @@ namespace Negocio
             }
         }
 
-        public string traerIDCliente(string CUIT)
+        public string traerIDProveedor(string CUIT)
         {
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
@@ -130,6 +130,31 @@ namespace Negocio
                 }
 
                 return idProveedor;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public void eliminar(int id)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandText = "delete from [TPC_ESPINOLA].[dbo].[Proveedores] where ID = @id";
+                comando.Connection = conexion;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@id", id);
+                conexion.Open();
+                comando.ExecuteNonQuery();
 
             }
             catch (Exception ex)
