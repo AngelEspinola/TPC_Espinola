@@ -3,5 +3,6 @@
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <h1>CLIENTES</h1>
-    <asp:Button Text="Nuevo" onclick="Unnamed1_Click" runat="server" />
+    <asp:Button Text="Nuevo" onclick="btnNuevoCliente_OnClick" runat="server" />
+
 </asp:Content>

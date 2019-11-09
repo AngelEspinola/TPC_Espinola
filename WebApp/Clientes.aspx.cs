@@ -14,7 +14,7 @@ namespace WebApp
 
         }
 
-        protected void Unnamed1_Click(object sender, EventArgs e)
+        protected void btnNuevoCliente_OnClick(object sender, EventArgs e)
         {
             Response.Redirect("NuevoCliente.aspx");
         }

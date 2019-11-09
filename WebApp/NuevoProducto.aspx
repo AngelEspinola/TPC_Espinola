@@ -11,7 +11,6 @@
             {
                  alert('Debes completar todos los campos para proceder!');
                  return false;
-
             }
             return true;
 }
@@ -20,15 +19,15 @@
     
         <div class="form-group">
             <label>Titulo</label>
-            <asp:TextBox ID="txtTitulo" MaxLength="30" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtTitulo" MaxLength="50" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Descripcion</label>
-            <asp:TextBox ID="txtDescripcion" MaxLength="120" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtDescripcion" MaxLength="200" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>URLImagen</label>
-            <asp:TextBox ID="txtURLImagen" MaxLength="120" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtURLImagen" MaxLength="250" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <asp:Button Text="Guardar" ID="btnAceptar"  OnClientClick="return validar()" OnClick ="CargarDatos"  CssClass="btn btn-primary" runat ="server"/>
 

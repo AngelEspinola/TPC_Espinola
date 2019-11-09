@@ -17,6 +17,7 @@ namespace WebApp
         {
             ProductoNegocio negocio = new ProductoNegocio();
             listaProductos = negocio.listar();
+            
         }
 
         protected void Unnamed1_Click(object sender, EventArgs e)

@@ -69,7 +69,6 @@
   <ItemGroup>
     <Content Include="Clientes.aspx" />
     <Content Include="Default.aspx" />
-    <Content Include="Global.asax" />
     <Content Include="NuevoCliente.aspx" />
     <Content Include="NuevoProducto.aspx" />
     <Content Include="NuevoProveedor.aspx" />
@@ -91,9 +90,6 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Global.asax.cs">
-      <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="NuevoCliente.aspx.cs">
       <DependentUpon>NuevoCliente.aspx</DependentUpon>
