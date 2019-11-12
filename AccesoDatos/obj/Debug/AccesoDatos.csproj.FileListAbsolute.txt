@@ -9,3 +9,4 @@ C:\Proyectos\Proyectos [GIT]\TPC_Espinola\AccesoDatos\obj\Debug\AccesoDatos.cspr
 C:\Proyectos\Proyectos [GIT]\TPC_Espinola\AccesoDatos\obj\Debug\AccesoDatos.csproj.CoreCompileInputs.cache
 C:\Proyectos\Proyectos [GIT]\TPC_Espinola\AccesoDatos\obj\Debug\AccesoDatos.dll
 C:\Proyectos\Proyectos [GIT]\TPC_Espinola\AccesoDatos\obj\Debug\AccesoDatos.pdb
+E:\Proyectos [GIT]\TPC\AccesoDatos\obj\Debug\AccesoDatos.csprojAssemblyReference.cache

@@ -9,3 +9,4 @@ C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Dominio\obj\Debug\Dominio.csprojAssemb
 C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Dominio\obj\Debug\Dominio.csproj.CoreCompileInputs.cache
 C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Dominio\obj\Debug\Dominio.dll
 C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Dominio\obj\Debug\Dominio.pdb
+E:\Proyectos [GIT]\TPC\Dominio\obj\Debug\Dominio.csprojAssemblyReference.cache
