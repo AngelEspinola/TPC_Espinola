@@ -45,7 +45,7 @@ namespace WebApp
                 txtDireccion.Text = clienteLocal.Direccion.ToString();
                 txtCiudad.Text = clienteLocal.Ciudad.ToString();
                 txtCodigoPostal.Text = clienteLocal.CodigoPostal.ToString();
-                txtFechaRegistro.Text = clienteLocal.FechaRegistro.ToShortDateString();
+                txtFechaRegistro.Text = clienteLocal.FechaRegistro;
                 Session["ClienteID" + Session.SessionID] = negocio.traerIDCliente(txtDNI.Text);
             }
             else
@@ -82,7 +82,7 @@ namespace WebApp
                 clienteLocal.Direccion = txtDireccion.Text;
                 clienteLocal.Ciudad = txtCiudad.Text;
                 clienteLocal.CodigoPostal = txtCodigoPostal.Text;
-                clienteLocal.FechaRegistro = Convert.ToDateTime(txtFechaRegistro.Text);
+                clienteLocal.FechaRegistro = txtFechaRegistro.Text;
 
                 negocioCliente.agregar(clienteLocal);
                 clienteLocal.ID = Convert.ToInt32(negocioCliente.traerIDCliente(clienteLocal.DNI));

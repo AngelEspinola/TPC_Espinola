@@ -34,6 +34,8 @@ namespace Negocio
                 {
                     cliente = new Cliente();
 
+                    cliente.ID = Convert.ToInt32(lector["ID"]);
+
                     if (!Convert.IsDBNull(lector["DNI"]))
                         cliente.DNI = lector["DNI"].ToString();
 
@@ -56,7 +58,7 @@ namespace Negocio
                         cliente.CodigoPostal = lector["CodigoPostal"].ToString();
 
                     if (!Convert.IsDBNull(lector["FechaRegistro"]))
-                        cliente.FechaRegistro = Convert.ToDateTime(lector["FechaRegistro"]);
+                        cliente.FechaRegistro = Convert.ToDateTime(lector["FechaRegistro"]).ToShortDateString();
 
                     listado.Add(cliente);
                 }
@@ -109,6 +111,41 @@ namespace Negocio
             }
         }
 
+        public void modificar(Cliente cliente)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandType = System.Data.CommandType.Text;
+                //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
+                comando.CommandText = "UPDATE [TPC_ESPINOLA].[dbo].[Clientes] SET DNI = @DNI, Nombre = @Nombre, Apellido = @Apellido, Email = @Email, Direccion = @Direccion, Ciudad = @Ciudad, CodigoPostal = @CodigoPostal, FechaRegistro = @FechaRegistro WHERE[TPC_ESPINOLA].[dbo].[Clientes].ID = @ID";
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@ID", cliente.ID);
+                comando.Parameters.AddWithValue("@DNI", cliente.DNI);
+                comando.Parameters.AddWithValue("@Nombre", cliente.Nombre);
+                comando.Parameters.AddWithValue("@Apellido", cliente.Apellido);
+                comando.Parameters.AddWithValue("@Email", cliente.Email);
+                comando.Parameters.AddWithValue("@Direccion", cliente.Direccion);
+                comando.Parameters.AddWithValue("@Ciudad", cliente.Ciudad);
+                comando.Parameters.AddWithValue("@CodigoPostal", cliente.CodigoPostal);
+                comando.Parameters.AddWithValue("@FechaRegistro", cliente.FechaRegistro);
+                comando.Connection = conexion;
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
         public string traerIDCliente(string DNI)
         {
             SqlConnection conexion = new SqlConnection();
@@ -134,6 +171,31 @@ namespace Negocio
                 }
 
                 return idCliente;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public void eliminar(int id)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandText = "delete from [TPC_ESPINOLA].[dbo].[Clientes] where ID = @id";
+                comando.Connection = conexion;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@id", id);
+                conexion.Open();
+                comando.ExecuteNonQuery();
 
             }
             catch (Exception ex)

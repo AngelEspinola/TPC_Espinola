@@ -12,8 +12,7 @@ namespace WebApp
 {
     public partial class NuevoProveedor : System.Web.UI.Page
     {
-
-        Producto producto;
+        
         Proveedor proveedorLocal;
 
         protected void Page_Load(object sender, EventArgs e)
@@ -43,7 +42,7 @@ namespace WebApp
                 proveedorLocal.Direccion = txtDireccion.Text;
                 proveedorLocal.Ciudad = txtCiudad.Text;
                 proveedorLocal.CodigoPostal = txtCodigoPostal.Text;
-                proveedorLocal.FechaRegistro = Convert.ToDateTime(txtFechaRegistro.Text);
+                proveedorLocal.FechaRegistro = txtFechaRegistro.Text;
 
                 negocioProveedor.agregar(proveedorLocal);
                 proveedorLocal.ID = Convert.ToInt32(negocioProveedor.traerIDProveedor(proveedorLocal.CUIT));

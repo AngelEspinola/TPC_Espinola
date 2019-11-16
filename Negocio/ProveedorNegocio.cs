@@ -25,7 +25,7 @@ namespace Negocio
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
                 //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
-                comando.CommandText = "SELECT [Id],[DNI],[Nombre],[Apellido],[Email],[Direccion],[Ciudad],[CodigoPostal],[FechaRegistro] FROM[TPC_ESPINOLA].[dbo].[Clientes]";
+                comando.CommandText = "SELECT [Id],[CUIT],[RazonSocial],[Email],[Direccion],[Ciudad],[CodigoPostal],[FechaRegistro] FROM[TPC_ESPINOLA].[dbo].[Proveedores]";
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
@@ -33,6 +33,8 @@ namespace Negocio
                 while (lector.Read())
                 {
                     proveedor = new Proveedor();
+
+                    proveedor.ID = Convert.ToInt32(lector["Id"]);
 
                     if (!Convert.IsDBNull(lector["CUIT"]))
                         proveedor.CUIT = lector["CUIT"].ToString();
@@ -53,7 +55,7 @@ namespace Negocio
                         proveedor.CodigoPostal = lector["CodigoPostal"].ToString();
 
                     if (!Convert.IsDBNull(lector["FechaRegistro"]))
-                        proveedor.FechaRegistro = Convert.ToDateTime(lector["FechaRegistro"]);
+                        proveedor.FechaRegistro = Convert.ToDateTime(lector["FechaRegistro"]).ToShortDateString();
 
                     listado.Add(proveedor);
                 }
@@ -99,6 +101,40 @@ namespace Negocio
             {
                 throw ex;
             }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public void modificar(Proveedor proveedor)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandType = System.Data.CommandType.Text;
+                //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
+                comando.CommandText = "UPDATE [TPC_ESPINOLA].[dbo].[Proveedores] SET CUIT = @CUIT, RazonSocial = @RazonSocial, Email = @Email, Direccion = @Direccion, Ciudad = @Ciudad, CodigoPostal = @CodigoPostal, FechaRegistro = @FechaRegistro WHERE[TPC_ESPINOLA].[dbo].[Proveedores].ID = @ID";
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@ID", proveedor.ID);
+                comando.Parameters.AddWithValue("@CUIT", proveedor.CUIT);
+                comando.Parameters.AddWithValue("@RazonSocial", proveedor.RazonSocial);
+                comando.Parameters.AddWithValue("@Email", proveedor.Email);
+                comando.Parameters.AddWithValue("@Direccion", proveedor.Direccion);
+                comando.Parameters.AddWithValue("@Ciudad", proveedor.Ciudad);
+                comando.Parameters.AddWithValue("@CodigoPostal", proveedor.CodigoPostal);
+                comando.Parameters.AddWithValue("@FechaRegistro", proveedor.FechaRegistro);
+                comando.Connection = conexion;
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
             finally
             {
                 conexion.Close();
