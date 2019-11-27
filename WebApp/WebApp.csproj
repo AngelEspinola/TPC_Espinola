@@ -68,12 +68,16 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Clientes.aspx" />
+    <Content Include="Compras.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="NuevaCompra.aspx" />
+    <Content Include="NuevaVenta.aspx" />
     <Content Include="NuevoCliente.aspx" />
     <Content Include="NuevoProducto.aspx" />
     <Content Include="NuevoProveedor.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="Proveedores.aspx" />
+    <Content Include="Ventas.aspx" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
@@ -84,12 +88,33 @@
     <Compile Include="Clientes.aspx.designer.cs">
       <DependentUpon>Clientes.aspx</DependentUpon>
     </Compile>
+    <Compile Include="Compras.aspx.cs">
+      <DependentUpon>Compras.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Compras.aspx.designer.cs">
+      <DependentUpon>Compras.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Default.aspx.cs">
       <DependentUpon>Default.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevaCompra.aspx.cs">
+      <DependentUpon>NuevaCompra.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevaCompra.aspx.designer.cs">
+      <DependentUpon>NuevaCompra.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="NuevaVenta.aspx.cs">
+      <DependentUpon>NuevaVenta.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="NuevaVenta.aspx.designer.cs">
+      <DependentUpon>NuevaVenta.aspx</DependentUpon>
     </Compile>
     <Compile Include="NuevoCliente.aspx.cs">
       <DependentUpon>NuevoCliente.aspx</DependentUpon>
@@ -133,6 +158,13 @@
     </Compile>
     <Compile Include="Proveedores.aspx.designer.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Ventas.aspx.cs">
+      <DependentUpon>Ventas.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Ventas.aspx.designer.cs">
+      <DependentUpon>Ventas.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

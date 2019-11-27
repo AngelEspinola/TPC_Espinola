@@ -53,7 +53,7 @@ namespace WebApp
                 
                 negocioProducto.agregar(productoLocal);
             }
-
+            Response.Redirect("Productos.aspx");
         }
     }
 }

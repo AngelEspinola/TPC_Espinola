@@ -40,5 +40,10 @@ namespace WebApp
             negocio.eliminar(btn.CommandArgument.ToString());
             BindearListaProductos();
         }
+        protected void btnModificar_OnClick(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            Response.Redirect("NuevoProducto.aspx?idpkm=" + btn.CommandArgument.ToString());
+        }
     }
 }

@@ -40,7 +40,21 @@ namespace WebApp
         }
         protected void dgvProveedores_RowEditing(object sender, GridViewEditEventArgs e)
         {
+            Response.Redirect("NuevoProveedor.aspx" + dgvProveedores.SelectedRow.Cells[1]);
             dgvProveedores.EditIndex = e.NewEditIndex;
+            CargarDatosGrilla();
+        }
+        protected void btnModificar_OnClick(object sender, EventArgs e)
+        {
+            Button btn = (Button)sender;
+            Response.Redirect("NuevoProveedor.aspx?idpkm=" + btn.CommandArgument.ToString());
+        }
+        protected void btnEliminar_OnClick(object sender, EventArgs e)
+        {
+            ProveedorNegocio negocio = new ProveedorNegocio();
+            Button btn = (Button)sender;
+            int id = Convert.ToInt32(btn.CommandArgument.ToString());
+            negocio.eliminar(id);
             CargarDatosGrilla();
         }
         protected void dgvProveedores_RowCancelingEdit(object sender, GridViewCancelEditEventArgs e)
@@ -50,21 +64,21 @@ namespace WebApp
         }
         protected void dgvProveedores_RowUpdating(object sender, GridViewUpdateEventArgs e)
         {
-            Proveedor proveedor = new Proveedor();
-            ProveedorNegocio negocio = new ProveedorNegocio();
+            //Proveedor proveedor = new Proveedor();
+            //ProveedorNegocio negocio = new ProveedorNegocio();
 
-            proveedor.ID            = Convert.ToInt32(e.NewValues["ID"].ToString());
-            proveedor.CUIT          = e.NewValues["CUIT"].ToString();
-            proveedor.RazonSocial   = e.NewValues["RazonSocial"].ToString();
-            proveedor.Email         = e.NewValues["Email"].ToString();
-            proveedor.Direccion     = e.NewValues["Direccion"].ToString();
-            proveedor.Ciudad        = e.NewValues["Ciudad"].ToString();
-            proveedor.CodigoPostal  = e.NewValues["CodigoPostal"].ToString();
-            proveedor.FechaRegistro = e.NewValues["FechaRegistro"].ToString();
+            //proveedor.ID            = Convert.ToInt32(e.NewValues["ID"].ToString());
+            //proveedor.CUIT          = e.NewValues["CUIT"].ToString();
+            //proveedor.RazonSocial   = e.NewValues["RazonSocial"].ToString();
+            //proveedor.Email         = e.NewValues["Email"].ToString();
+            //proveedor.Direccion     = e.NewValues["Direccion"].ToString();
+            //proveedor.Ciudad        = e.NewValues["Ciudad"].ToString();
+            //proveedor.CodigoPostal  = e.NewValues["CodigoPostal"].ToString();
+            //proveedor.FechaRegistro = e.NewValues["FechaRegistro"].ToString();
 
-            negocio.modificar(proveedor);
-            dgvProveedores.EditIndex = -1;
-            CargarDatosGrilla();
+            //negocio.modificar(proveedor);
+            //dgvProveedores.EditIndex = -1;
+            //CargarDatosGrilla();
         }
 
     }

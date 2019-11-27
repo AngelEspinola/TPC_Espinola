@@ -2,8 +2,10 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <h1>CLIENTES</h1>
-    <asp:Button Text="Nuevo" onclick="btnNuevoCliente_OnClick" runat="server" />
+    <div style="text-align:center;margin-bottom:15px">
+        <h1>CLIENTES</h1>
+        <asp:Button Text="Nuevo" CssClass="btn-dark" onclick="btnNuevoCliente_OnClick" runat="server" />
+    </div>
     <asp:GridView CssClass="table" ID="dgvClientes" runat="server" AutoGenerateColumns="false" OnRowEditing="dgvClientes_RowEditing" OnRowCancelingEdit="dgvClientes_RowCancelingEdit" OnRowDeleting="dgvClientes_RowDeleting" OnRowUpdating="dgvClientes_RowUpdating">
         <Columns>    
             <asp:BoundField DataField="ID" HeaderText="ID" />

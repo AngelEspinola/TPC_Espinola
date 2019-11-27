@@ -16,5 +16,6 @@ namespace Dominio
         public string Ciudad { get; set; }
         public string CodigoPostal { get; set; }
         public string FechaRegistro { get; set; }
+        public List<Producto> Productos { get; set; }
     }
 }

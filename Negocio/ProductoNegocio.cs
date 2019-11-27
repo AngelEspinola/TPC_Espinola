@@ -137,7 +137,41 @@ namespace Negocio
                 conexion.Close();
             }
         }
+        public Producto traerProducto(string ProductoID)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            SqlDataReader lector;
+            Producto producto = new Producto();
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "SELECT * FROM [TPC_ESPINOLA].[dbo].[Productos] WHERE [TPC_ESPINOLA].[dbo].[Productos].Id = @ID";
+                comando.Connection = conexion;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@ID", ProductoID);
+                conexion.Open();
+                lector = comando.ExecuteReader();
 
+                if (lector.Read())
+                {
+                    producto.ID = int.Parse(lector["Id"].ToString());
+                    producto.Titulo = lector["Titulo"].ToString();
+                    producto.Descripcion = lector["Descripcion"].ToString();
+                    producto.URLImagen = lector["URLImagen"].ToString();
+                }
+                return producto;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
 
     }
 }

@@ -183,6 +183,48 @@ namespace Negocio
             }
         }
 
+        public Cliente traerCliente(string ID)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            SqlDataReader lector;
+            Cliente cliente = new Cliente();
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandType = System.Data.CommandType.Text;
+                //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
+                comando.CommandText = "SELECT * FROM[TPC_ESPINOLA].[dbo].[Clientes] WHERE [TPC_ESPINOLA].[dbo].[Clientes].Id = @ID";
+                comando.Connection = conexion;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@ID", ID);
+                conexion.Open();
+                lector = comando.ExecuteReader();
+
+                if(lector.Read())
+                {
+                    cliente.ID = int.Parse(lector["Id"].ToString());
+                    cliente.Nombre = lector["Nombre"].ToString();
+                    cliente.Apellido = lector["Apellido"].ToString();
+                    cliente.Ciudad = lector["Ciudad"].ToString();
+                    cliente.CodigoPostal = lector["CodigoPostal"].ToString();
+                    cliente.Direccion = lector["Direccion"].ToString();
+                    cliente.DNI = lector["DNI"].ToString();
+                    cliente.Email = lector["Email"].ToString();
+                }
+                return cliente;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+
         public void eliminar(int id)
         {
             SqlConnection conexion = new SqlConnection();

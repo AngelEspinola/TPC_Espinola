@@ -2,25 +2,29 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
+    <div style="text-align:center;margin:5px 0px 15px 0px">
     <h1>Productos</h1>
-    <asp:Button Text="Nuevo" onclick="Unnamed1_Click" runat="server" />
-    <h1>Lista Productos</h1>
+        <asp:Button Text="Nuevo" CssClass="btn-dark" onclick="Unnamed1_Click" runat="server" />
+    </div>
 
 <%--    <asp:TextBox runat="server" AutoPostBack="true" Id="txtNumeroPokemon" OnTextChanged="txtNumeroPokemon_TextChanged" />--%>
     <%--<asp:DropDownList runat="server" ID="cboPokemons" />--%>
 
-    <div class="card-columns" style="margin-left: 10px; margin-right: 10px;">
+    <div class="card-columns" style="margin-left: 25%; margin-right: 10px;">
          <asp:Repeater runat="server" ID="repetidor">
             <ItemTemplate>
                 <div class="card">
                     <img src="<%#Eval("URLImagen") %>" class="card-img-top" alt="...">
-                    <div class="card-body">
+                    <div class="card-body" style="text-align:center">
                         <h5 class="card-title"><%#Eval("Titulo")%></h5>
                         <p class="card-text"><%#Eval("Descripcion")%></p>
                         <p class="card-text"><%#Eval("ID")%></p>
                     </div>
-                    <a class="btn btn-dark" href="NuevoProducto.aspx?idpkm=<%#Eval("ID")%>">Modificar</a>
-                    <asp:Button ID="btnEliminar" CssClass="btn btn-primary" Text="Eliminar" CommandArgument='<%#Eval("ID")%>' CommandName="IDProducto" runat="server" OnClick="btnEliminar_OnClick" />
+                    <%--<a class="btn-dark" style="resize:both" href="NuevoProducto.aspx?idpkm=<%#Eval("ID")%>">Modificar</a>--%>
+                    <div style="text-align:center; margin-bottom:20px; margin-left:10px; margin-right:10px">
+                        <asp:Button Text="Modificar" CssClass="btn-dark" OnClick ="btnModificar_OnClick" CommandArgument='<%#Eval("ID")%>' CommandName="IDProducto" runat="server" />
+                        <asp:Button ID="btnEliminar" CssClass="btn-dark" Text="Eliminar" CommandArgument='<%#Eval("ID")%>' CommandName="IDProducto" runat="server" OnClick="btnEliminar_OnClick" />
+                    </div>
                 </div>
             </ItemTemplate>
         </asp:Repeater>

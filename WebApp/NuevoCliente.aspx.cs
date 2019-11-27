@@ -56,18 +56,7 @@ namespace WebApp
                 Response.Write(msg);
             }
         }
-        public void MainButton_OnClick(object sender, EventArgs e)
-        {
-            try
-            {
-                Response.Redirect("/IngresoVoucher.aspx");
-            }
-            catch (Exception)
-            {
-
-                throw;
-            }
-        }
+        
         public void CargarDatos(object sender, EventArgs e)
         {
             ClienteNegocio negocioCliente = new ClienteNegocio();
@@ -91,7 +80,8 @@ namespace WebApp
             {
                 clienteLocal.ID = Convert.ToInt32(Session["ClienteID" + Session.SessionID]);
             }
-            
+            Response.Redirect("Clientes.aspx");
+
         }
     }
 }

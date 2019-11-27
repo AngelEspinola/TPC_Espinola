@@ -50,6 +50,28 @@
             <label>Fecha de Registro</label>
             <asp:TextBox ID="txtFechaRegistro" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />    
     </div>
+    <div class="form-group">
+            <label>Productos</label>
+            <asp:DataGrid ID="DefaultGrid" Runat="server" AutoGenerateColumns="False">
+             <Columns>
+              </Columns>
+            </asp:DataGrid>
+
+        <asp:GridView CssClass="table" ID="dgvProductos" runat="server" AutoGenerateColumns="false" >
+            <Columns>    
+             <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:CheckBox ID="cbxSeleccion" runat="server" AutoPostBack="false" OnCheckedChanged="chkStatus_OnChackedChanged" Checked='false' />
+                    </ItemTemplate>
+              </asp:TemplateField>
+                <asp:BoundField DataField="ID" HeaderText="ID" />
+                <asp:BoundField DataField="Titulo" HeaderText="Titulo" />
+                <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
+            </Columns>  
+        </asp:GridView>
+
+
+    </div>
     <asp:Button Text="Aceptar" ID="btnAceptar"  OnClientClick="return validar()" OnClick ="CargarDatos"  CssClass="btn btn-primary" runat ="server"/>
 
 </asp:Content>

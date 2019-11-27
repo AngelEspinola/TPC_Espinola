@@ -107,7 +107,7 @@ namespace Negocio
             }
         }
 
-        public void modificar(Proveedor proveedor)
+        public void modificar(Proveedor proveedor, string proveedorID)
         {
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
@@ -118,7 +118,7 @@ namespace Negocio
                 //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
                 comando.CommandText = "UPDATE [TPC_ESPINOLA].[dbo].[Proveedores] SET CUIT = @CUIT, RazonSocial = @RazonSocial, Email = @Email, Direccion = @Direccion, Ciudad = @Ciudad, CodigoPostal = @CodigoPostal, FechaRegistro = @FechaRegistro WHERE[TPC_ESPINOLA].[dbo].[Proveedores].ID = @ID";
                 comando.Parameters.Clear();
-                comando.Parameters.AddWithValue("@ID", proveedor.ID);
+                comando.Parameters.AddWithValue("@ID", proveedorID);
                 comando.Parameters.AddWithValue("@CUIT", proveedor.CUIT);
                 comando.Parameters.AddWithValue("@RazonSocial", proveedor.RazonSocial);
                 comando.Parameters.AddWithValue("@Email", proveedor.Email);
@@ -191,6 +191,95 @@ namespace Negocio
                 comando.Parameters.AddWithValue("@id", id);
                 conexion.Open();
                 comando.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public void agregarProducto(string ProductoID, string ProveedorID)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "  INSERT INTO [TPC_ESPINOLA].[dbo].[ProductosXProveedores] (ProductoID,ProveedorID) VALUES (@ProductoID,@ProveedorID)";
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@ProductoID", ProductoID);
+                comando.Parameters.AddWithValue("@ProveedorID", ProveedorID);
+                comando.Connection = conexion;
+                conexion.Open();
+                comando.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public void eliminarProductos(string ProveedorID)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandText = "DELETE from [TPC_ESPINOLA].[dbo].[ProductosXProveedores] where [TPC_ESPINOLA].[dbo].[ProductosXProveedores].ProveedorID = @ProveedorID";
+                comando.Connection = conexion;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@ProveedorID", ProveedorID);
+                conexion.Open();
+                comando.ExecuteNonQuery();
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public List<Producto> listarProductos(string ProveedorID)
+        {
+            List<Producto> listaProductos = new List<Producto>();
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            SqlDataReader lector;
+            string productoID;
+            Producto producto;
+            ProductoNegocio negocio = new ProductoNegocio();
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "SELECT [ProductoID] FROM [TPC_ESPINOLA].[dbo].[ProductosXProveedores] WHERE [TPC_ESPINOLA].[dbo].[ProductosXProveedores].ProveedorID = @ProveedorID";
+                comando.Connection = conexion;
+                comando.Parameters.AddWithValue("@ProveedorID", ProveedorID);
+                conexion.Open();
+                lector = comando.ExecuteReader();
+
+                while (lector.Read())
+                {
+
+                    productoID = lector["ProductoID"].ToString();
+                    producto = negocio.traerProducto(productoID);
+                    listaProductos.Add(producto);
+                }
+
+                return listaProductos;
 
             }
             catch (Exception ex)

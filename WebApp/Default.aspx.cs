@@ -25,6 +25,14 @@ namespace WebApp
         {
             Response.Redirect("Proveedores.aspx");
         }
+        protected void Ventas_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("Ventas.aspx");
+        }
+        protected void Compras_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("Compras.aspx");
+        }
     }
 
     
