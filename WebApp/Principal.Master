@@ -15,9 +15,9 @@
 <body>
     <div class="topnav">
   <a class="active" href="Default.aspx">Home</a>
-  <a href="#news">News</a>
+<%--  <a href="#news">News</a>
   <a href="#contact">Contact</a>
-  <a href="#about">About</a>
+  <a href="#about">About</a>--%>
 </div>
     <style>
         /* Add a black background color to the top navigation */

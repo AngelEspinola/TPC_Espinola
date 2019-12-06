@@ -29,6 +29,10 @@
             <label>URLImagen</label>
             <asp:TextBox ID="txtURLImagen" MaxLength="250" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
+    <div class="form-group" style="width:200px">
+            <label>Porcentaje de Ganancia (%)</label>
+            <asp:TextBox ID="txtGanancia" MaxLength="50" style="width:80px" ClientIDMode="Static" CssClass="form-control" runat="server" />
+        </div>
     <asp:Button Text="Guardar" ID="btnAceptar"  OnClientClick="return validar()" OnClick ="CargarDatos"  CssClass="btn btn-primary" runat ="server"/>
 
 </asp:Content>

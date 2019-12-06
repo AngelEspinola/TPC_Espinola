@@ -4,7 +4,7 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="text-align:center;margin:5px 0px 15px 0px">
     <h1>Productos</h1>
-        <asp:Button Text="Nuevo" CssClass="btn-dark" onclick="Unnamed1_Click" runat="server" />
+        <asp:Button Text="Nuevo" CssClass="btn btn-secondary" onclick="Unnamed1_Click" runat="server" />
     </div>
 
 <%--    <asp:TextBox runat="server" AutoPostBack="true" Id="txtNumeroPokemon" OnTextChanged="txtNumeroPokemon_TextChanged" />--%>
@@ -20,10 +20,10 @@
                         <p class="card-text"><%#Eval("Descripcion")%></p>
                         <p class="card-text"><%#Eval("ID")%></p>
                     </div>
-                    <%--<a class="btn-dark" style="resize:both" href="NuevoProducto.aspx?idpkm=<%#Eval("ID")%>">Modificar</a>--%>
+                    <%--<a class="btn btn-secondary" style="resize:both" href="NuevoProducto.aspx?idpkm=<%#Eval("ID")%>">Modificar</a>--%>
                     <div style="text-align:center; margin-bottom:20px; margin-left:10px; margin-right:10px">
-                        <asp:Button Text="Modificar" CssClass="btn-dark" OnClick ="btnModificar_OnClick" CommandArgument='<%#Eval("ID")%>' CommandName="IDProducto" runat="server" />
-                        <asp:Button ID="btnEliminar" CssClass="btn-dark" Text="Eliminar" CommandArgument='<%#Eval("ID")%>' CommandName="IDProducto" runat="server" OnClick="btnEliminar_OnClick" />
+                        <asp:Button Text="Modificar" CssClass="btn btn-secondary" OnClick ="btnModificar_OnClick" CommandArgument='<%#Eval("ID")%>' CommandName="IDProducto" runat="server" />
+                        <asp:Button ID="btnEliminar" CssClass="btn btn-secondary" Text="Eliminar" CommandArgument='<%#Eval("ID")%>' CommandName="IDProducto" runat="server" OnClick="btnEliminar_OnClick" />
                     </div>
                 </div>
             </ItemTemplate>
@@ -38,8 +38,8 @@
                 <h5 class="card-title"><% = item.Titulo %></h5>
                 <p class="card-text"><% = item.Descripcion %></p>
             </div>
-            <asp:Button class ="btn btn-dark" CommandArgument="<% = item.ID.ToString()%>" CommandName="ProductoID" OnClick="btnEliminar_OnClick" Text="Eliminar" runat="server" />
-            <a class="btn btn-dark" href="NuevoProducto.aspx?idpkm=<% = item.ID.ToString() %>">Modificar</a>
+            <asp:Button class ="btn btn btn-secondary" CommandArgument="<% = item.ID.ToString()%>" CommandName="ProductoID" OnClick="btnEliminar_OnClick" Text="Eliminar" runat="server" />
+            <a class="btn btn btn-secondary" href="NuevoProducto.aspx?idpkm=<% = item.ID.ToString() %>">Modificar</a>
             <%--<a class="btn btn-primary" CommandArgument='<%#Eval("product.ProductId")%>' CommandName="ThisBtnClick" onClick="btnEliminar_OnClick">Eliminar</a>
         </div>
         <% } %>--%>

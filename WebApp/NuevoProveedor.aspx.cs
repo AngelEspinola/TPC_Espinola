@@ -103,7 +103,7 @@ namespace WebApp
             proveedorLocal.CodigoPostal = txtCodigoPostal.Text;
             proveedorLocal.FechaRegistro = txtFechaRegistro.Text;
 
-            if (Request.QueryString["idpkm"] == "") //Se agrega proveedor
+            if (Request.QueryString["idpkm"] == null) //Se agrega proveedor
             {
                 negocioProveedor.agregar(proveedorLocal);
             }

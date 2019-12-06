@@ -28,27 +28,27 @@
         </div>
         <div class="form-group">
             <label>Razon Social</label>
-            <asp:TextBox ID="txtRazonSocial" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtRazonSocial" MaxLength="100" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Email</label>
-            <asp:TextBox ID="txtEmail" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtEmail" MaxLength="100" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Direccion</label>
-            <asp:TextBox ID="txtDireccion" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtDireccion" MaxLength="50" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Ciudad</label>
-            <asp:TextBox ID="txtCiudad" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtCiudad" MaxLength="50" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Codigo Postal</label>
-            <asp:TextBox ID="txtCodigoPostal" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtCodigoPostal" MaxLength="8" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Fecha de Registro</label>
-            <asp:TextBox ID="txtFechaRegistro" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />    
+            <asp:TextBox ID="txtFechaRegistro" MaxLength="10" ClientIDMode="Static" CssClass="form-control" runat="server" />    
     </div>
     <div class="form-group">
             <label>Productos</label>

@@ -177,7 +177,47 @@ namespace Negocio
                 conexion.Close();
             }
         }
+        public Proveedor traerProveedor(string ID)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            SqlDataReader lector;
+            ProductoNegocio negocioProducto;
+            Proveedor proveedor = new Proveedor();
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "SELECT * FROM[TPC_ESPINOLA].[dbo].[Proveedores] WHERE [TPC_ESPINOLA].[dbo].[Proveedores].Id = @ID";
+                comando.Connection = conexion;
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@ID", ID);
+                conexion.Open();
+                lector = comando.ExecuteReader();
 
+                if (lector.Read())
+                {
+                    negocioProducto = new ProductoNegocio();
+                    proveedor.ID = int.Parse(lector["Id"].ToString());
+                    proveedor.RazonSocial = lector["RazonSocial"].ToString();
+                    proveedor.CUIT = lector["CUIT"].ToString();
+                    proveedor.Ciudad = lector["Ciudad"].ToString();
+                    proveedor.CodigoPostal = lector["CodigoPostal"].ToString();
+                    proveedor.Direccion = lector["Direccion"].ToString();
+                    proveedor.Email = lector["Email"].ToString();
+                    proveedor.Productos = negocioProducto.listar(lector["Id"].ToString());
+                }
+                return proveedor;
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
         public void eliminar(int id)
         {
             SqlConnection conexion = new SqlConnection();

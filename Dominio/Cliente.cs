@@ -17,7 +17,10 @@ namespace Dominio
         public string Ciudad { get; set; }
         public string CodigoPostal { get; set; }
         public string FechaRegistro { get; set; }
-
+        public string NombreYApellido
+        {
+            get { return this.Apellido + ", " + this.Nombre; }
+        }
         public override string ToString()
         {
             return Apellido + ", " + Nombre;

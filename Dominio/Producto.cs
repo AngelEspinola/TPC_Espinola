@@ -12,6 +12,7 @@ namespace Dominio
         public string Titulo { get; set; }
         public string Descripcion { get; set; }
         public string URLImagen { get; set; }
+        public float Precio { get; set; }
         public float Ganancia { get; set; }
         public override string ToString()
         {

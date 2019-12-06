@@ -11,13 +11,13 @@ namespace Negocio
 {
     class DetalleVentaNegocio
     {
-        public List<DetalleVenta> listar(string VentaID)
+        public List<Detalle> listar(string VentaID)
         {
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
-            List<DetalleVenta> listado = new List<DetalleVenta>();
-            DetalleVenta detalleVenta;
+            List<Detalle> listado = new List<Detalle>();
+            Detalle detalleVenta;
             try
             {
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
@@ -31,7 +31,7 @@ namespace Negocio
                 ProductoNegocio negocioProducto = new ProductoNegocio();
                 if(lector.Read())
                 {
-                    detalleVenta = new DetalleVenta();
+                    detalleVenta = new Detalle();
                     detalleVenta.Producto = negocioProducto.traerProducto(lector["ProductoID"].ToString());
                     detalleVenta.Cantidad = int.Parse(lector["Cantidad"].ToString());
 
@@ -50,7 +50,7 @@ namespace Negocio
                 conexion.Close();
             }
         }
-        public void agregar(Venta nuevaVenta, string VentaID)
+        public void agregar(Detalle detalleVenta, string ClienteID, string VentaID)
         {
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
@@ -59,11 +59,12 @@ namespace Negocio
 
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "  INSERT INTO [TPC_ESPINOLA].[dbo].[DetalleVentas] (VentaID,ProductoID,Cantidad) VALUES (@VentaID,@ClienteID,@Cantidad)";
+                comando.CommandText = "  INSERT INTO [TPC_ESPINOLA].[dbo].[DetalleVentas] (ProductoID,VentaID,Cantidad,Precio) VALUES (@ProductoID,@VentaID,@Cantidad,@Precio)";
                 comando.Parameters.Clear();
-                comando.Parameters.AddWithValue("@ClienteID", nuevaVenta.cliente.ID);
-                comando.Parameters.AddWithValue("@Cantidad", nuevaVenta.Detalle[0].Cantidad);
+                comando.Parameters.AddWithValue("@ProductoID", detalleVenta.Producto.ID);
                 comando.Parameters.AddWithValue("@VentaID", VentaID);
+                comando.Parameters.AddWithValue("@Cantidad", detalleVenta.Cantidad);
+                comando.Parameters.AddWithValue("@Precio", detalleVenta.Precio);
                 comando.Connection = conexion;
                 conexion.Open();
                 comando.ExecuteNonQuery();

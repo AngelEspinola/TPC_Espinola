@@ -10,8 +10,6 @@
         <Columns>    
             <asp:BoundField DataField="ID" HeaderText="ID" />
             <asp:BoundField DataField="Cliente" HeaderText="Cliente" />
-            <asp:BoundField DataField="Detalle[0].Cantidad" HeaderText="Cantidad" />
-            <asp:BoundField DataField="Total" HeaderText="Total" />
         </Columns>  
     </asp:GridView>
 </asp:Content>

@@ -17,5 +17,10 @@ namespace Dominio
         public string CodigoPostal { get; set; }
         public string FechaRegistro { get; set; }
         public List<Producto> Productos { get; set; }
+
+        public override string ToString()
+        {
+            return RazonSocial;
+        }
     }
 }

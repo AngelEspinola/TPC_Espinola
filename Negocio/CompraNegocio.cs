@@ -5,39 +5,38 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data.SqlClient;
 using Dominio;
-using Negocio;
 using AccesoDatos;
 
 namespace Negocio
 {
-    public class VentaNegocio
+    public class CompraNegocio
     {
-
-        public List<Venta> listar()
+        public List<Compra> listar()
         {
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
-            List<Venta> listado = new List<Venta>();
-            Venta venta;
+            List<Compra> listado = new List<Compra>();
+            Compra compra;
             try
             {
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "SELECT * FROM[TPC_ESPINOLA].[dbo].[Ventas]";
+                comando.CommandText = "SELECT * FROM[TPC_ESPINOLA].[dbo].[Compras]";
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
-                ClienteNegocio negocioCliente = new ClienteNegocio();
+                ProveedorNegocio negocioProveedor= new ProveedorNegocio();
                 DetalleVentaNegocio negocioDetalleVenta = new DetalleVentaNegocio();
                 while (lector.Read())
                 {
-                    venta = new Venta();
-                    venta.ID = Convert.ToInt32(lector["Id"]);
-                    venta.Cliente = negocioCliente.traerCliente(lector["ClienteID"].ToString());
-                    venta.Detalle = negocioDetalleVenta.listar(lector["Id"].ToString());
+                    compra = new Compra();
+                    compra.ID = Convert.ToInt32(lector["Id"]);
+                    compra.Proveedor = negocioProveedor.traerProveedor(lector["ProveedorID"].ToString());
+                    compra.Detalle = negocioDetalleVenta.listar(lector["Id"].ToString());
+                    compra.Fecha = Convert.ToDateTime(lector["Fecha"].ToString());
 
-                    listado.Add(venta);
+                    listado.Add(compra);
                 }
 
                 return listado;
@@ -83,22 +82,28 @@ namespace Negocio
         //        conexion.Close();
         //    }
         //}
-        public void agregarVentaYDetalle(Venta nuevaVenta)
+        public void agregarCompraYDetalle(Compra nuevaCompra)
         {
-            DetalleVentaNegocio negocioDetalleVenta = new DetalleVentaNegocio();
-            string IDVenta = this.agregar(nuevaVenta);
-            if (IDVenta != "")
+            DetalleCompraNegocio negocioDetalleCompra = new DetalleCompraNegocio();
+            ProductoNegocio negocioProducto = new ProductoNegocio();
+            string IDCompra = this.agregar(nuevaCompra);
+            if (IDCompra != "")
             {
-                foreach (Detalle detalleVenta in nuevaVenta.Detalle)
+                foreach (Detalle det in nuevaCompra.Detalle)
                 {
-                    negocioDetalleVenta.agregar(detalleVenta, nuevaVenta.Cliente.ID.ToString(), IDVenta);
+                    negocioDetalleCompra.agregar(det, nuevaCompra.Proveedor.ID.ToString(), IDCompra);
                 }
             }
+            else
+            {
+                //Falla al generar la compra
+            }
+
         }
-        
-        protected string agregar(Venta nuevaVenta)
+
+        protected string agregar(Compra nuevaCompra)
         {
-            string IDVenta = "";
+            string IDCompra = "";
             SqlDataReader lector;
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
@@ -106,25 +111,25 @@ namespace Negocio
             {
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
-                comando.CommandText = "INSERT INTO [TPC_ESPINOLA].[dbo].[Ventas] (ClienteID,Fecha) VALUES (@ClienteID,@Fecha)";
+                comando.CommandText = "INSERT INTO [TPC_ESPINOLA].[dbo].[Compras] (ProveedorID,Fecha) VALUES (@ProveedorID,@Fecha)";
                 comando.Parameters.Clear();
-                comando.Parameters.AddWithValue("@ClienteID", nuevaVenta.Cliente.ID);
-                comando.Parameters.AddWithValue("@Fecha", nuevaVenta.Fecha);
+                comando.Parameters.AddWithValue("@ProveedorID", nuevaCompra.Proveedor.ID);
+                comando.Parameters.AddWithValue("@Fecha", nuevaCompra.Fecha);
                 comando.Connection = conexion;
                 conexion.Open();
                 comando.ExecuteNonQuery();
                 conexion.Close();
 
-                comando.CommandText = "SELECT ID FROM [TPC_ESPINOLA].[dbo].[Ventas] WHERE [TPC_ESPINOLA].[dbo].[Ventas].ClienteID = @ClienteID AND [TPC_ESPINOLA].[dbo].[Ventas].Fecha = @Fecha";
+                comando.CommandText = "SELECT ID FROM [TPC_ESPINOLA].[dbo].[Compras] WHERE [TPC_ESPINOLA].[dbo].[Compras].ProveedorID = @ProveedorID AND [TPC_ESPINOLA].[dbo].[Compras].Fecha = @Fecha";
                 comando.Parameters.Clear();
-                comando.Parameters.AddWithValue("@ClienteID", nuevaVenta.Cliente.ID);
-                comando.Parameters.AddWithValue("@Fecha", nuevaVenta.Fecha);
+                comando.Parameters.AddWithValue("@ProveedorID", nuevaCompra.Proveedor.ID);
+                comando.Parameters.AddWithValue("@Fecha", nuevaCompra.Fecha);
                 comando.Connection = conexion;
                 conexion.Open();
                 lector = comando.ExecuteReader();
                 if (lector.Read())
                 {
-                    IDVenta = lector["ID"].ToString();
+                    IDCompra = lector["ID"].ToString();
                 }
             }
             catch (Exception ex)
@@ -135,7 +140,7 @@ namespace Negocio
             {
                 conexion.Close();
             }
-                return IDVenta;
+            return IDCompra;
         }
         public void eliminar(string id)
         {
@@ -162,7 +167,5 @@ namespace Negocio
                 conexion.Close();
             }
         }
-
-
     }
 }

@@ -32,35 +32,35 @@
         <div class="form-group">
             <label>DNI</label>
             <asp:TextBox ID="txtDNI" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />
-            <asp:Button Text="Buscar"  CssClass="btn btn-info btn-lg" runat="server"  OnClick="BuscarCUIT"/>
+            <asp:Button Text="Buscar" Visible="false"  CssClass="btn btn-info btn-lg" runat="server"  OnClick="BuscarCUIT"/>
         </div>
         <div class="form-group">
             <label>Nombre</label>
-            <asp:TextBox ID="txtNombre" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtNombre" MaxLength="100" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Apellido</label>
-            <asp:TextBox ID="txtApellido" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtApellido" MaxLength="50" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Email</label>
-            <asp:TextBox ID="txtEmail" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtEmail" MaxLength="100" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Direccion</label>
-            <asp:TextBox ID="txtDireccion" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtDireccion" MaxLength="150" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Ciudad</label>
-            <asp:TextBox ID="txtCiudad" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtCiudad" MaxLength="100" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Codigo Postal</label>
-            <asp:TextBox ID="txtCodigoPostal" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtCodigoPostal" MaxLength="8" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Fecha de Registro</label>
-            <asp:TextBox ID="txtFechaRegistro" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />    
+            <asp:TextBox ID="txtFechaRegistro" MaxLength="10" ClientIDMode="Static" CssClass="form-control" runat="server" />    
     </div>
     <asp:Button Text="Aceptar" ID="btnAceptar"  OnClientClick="return validar()" OnClick ="CargarDatos"  CssClass="btn btn-primary" runat ="server"/>
 

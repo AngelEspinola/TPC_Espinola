@@ -28,6 +28,7 @@ namespace WebApp
                     txtTitulo.Text = productoLocal.Titulo;
                     txtDescripcion.Text = productoLocal.Descripcion;
                     txtURLImagen.Text = productoLocal.URLImagen;
+                    txtGanancia.Text = productoLocal.Ganancia.ToString();
                 }
             }
         }
@@ -36,21 +37,18 @@ namespace WebApp
             ProductoNegocio negocioProducto = new ProductoNegocio();
             productoLocal = new Producto();
 
+            productoLocal.Descripcion = txtDescripcion.Text;
+            productoLocal.Titulo = txtTitulo.Text;
+            productoLocal.URLImagen = txtURLImagen.Text;
+            productoLocal.Ganancia = float.Parse(txtGanancia.Text);
+
             if (Convert.ToInt32(Request.QueryString["idpkm"]) != 0)
             {
                 productoID = Convert.ToInt32(Request.QueryString["idpkm"]);
-                productoLocal.Titulo = txtTitulo.Text;
-                productoLocal.Descripcion = txtDescripcion.Text;
-                productoLocal.URLImagen = txtURLImagen.Text;
-
                 negocioProducto.modificar(productoLocal, productoID);
             }
             else 
             {
-                productoLocal.Descripcion = txtDescripcion.Text;
-                productoLocal.Titulo = txtTitulo.Text;
-                productoLocal.URLImagen = txtURLImagen.Text;
-                
                 negocioProducto.agregar(productoLocal);
             }
             Response.Redirect("Productos.aspx");
