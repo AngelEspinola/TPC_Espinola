@@ -7,6 +7,28 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     
     <script>
+        function validar() {
+            var precio = $('#txtPrecio').val();
+            var cantidad = $('#txtCantidad').val();
+            
+            if (!precio || !cantidad)
+            {
+                 alert('Debes completar todos los campos para proceder!');
+                 return false;
+
+             }
+             if (isNaN(precio.replace(",",".")))
+             {
+                 alert('El campo "Precio" debe contener un numero!');
+                 return false;
+             }
+             if (isNaN(cantidad) || cantidad % 1 !== 0)
+             {
+                 alert('El campo "Cantidad" debe contener un numero entero!');
+                 return false;
+             }
+            return true;
+            }
     </script>
  
             <table class="table" style="text-align:center">
@@ -28,16 +50,16 @@
                     </td>
                     <td>
                         <label>Precio </label>
-                        <asp:TextBox BackColor= "WhiteSmoke" runat="server" ID="txtPrecio" />
+                        <asp:TextBox BackColor= "WhiteSmoke" runat="server" ClientIDMode="Static" ID="txtPrecio" />
                     </td>
                     <td>
                         <label>Cantidad </label>
-                        <asp:TextBox BackColor= "WhiteSmoke" runat="server" ID="txtCantidad" />
+                        <asp:TextBox BackColor= "WhiteSmoke" runat="server" ClientIDMode="Static" ID="txtCantidad" />
                     </td>
                 </tr>
                 <tr>
                     <td colspan="3" style="text-align:center">
-                        <asp:Button Text="Agregar Detalle" style="margin-right:10px"  CssClass ="btn btn-secondary" OnClientClick="AgregarDetalle" OnClick="AgregarDetalle" runat="server" />
+                        <asp:Button Text="Agregar Detalle" style="margin-right:10px" OnClientClick="return validar()" CssClass ="btn btn-secondary" OnClick="AgregarDetalle" runat="server" />
                         <asp:Button Text="Guardar Compra" style="margin-left:10px" CssClass ="btn btn-secondary" OnClick="GuardarCompra" runat="server" />
                     </td>
                 </tr>

@@ -39,6 +39,10 @@ namespace Negocio
                     producto.URLImagen = lector["URLImagen"].ToString();
                     producto.Precio = (negocioDetCompra.TraerUltimoPrecioCompra(lector["Id"].ToString()) * (float.Parse(lector["Ganancia"].ToString())+100))  / 100;
                     producto.Ganancia = float.Parse(lector["Ganancia"].ToString());
+                    if (!Convert.IsDBNull(lector["StockMinimo"]))
+                    {
+                        producto.StockMinimo = int.Parse(lector["StockMinimo"].ToString());
+                    }
 
                     listado.Add(producto);
                 }
@@ -104,12 +108,13 @@ namespace Negocio
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
                 //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
-                comando.CommandText = "UPDATE [TPC_ESPINOLA].[dbo].[Productos] SET Titulo = @Titulo, Descripcion = @Descripcion, URLImagen = @URLImagen, Ganancia = @Ganancia WHERE[TPC_ESPINOLA].[dbo].[Productos].ID = @ID";
+                comando.CommandText = "UPDATE [TPC_ESPINOLA].[dbo].[Productos] SET Titulo = @Titulo, Descripcion = @Descripcion, URLImagen = @URLImagen, Ganancia = @Ganancia, StockMinimo = @StockMinimo WHERE[TPC_ESPINOLA].[dbo].[Productos].ID = @ID";
                 comando.Parameters.Clear();
                 comando.Parameters.AddWithValue("@Titulo", nuevoProducto.Titulo);
                 comando.Parameters.AddWithValue("@Descripcion", nuevoProducto.Descripcion);
                 comando.Parameters.AddWithValue("@URLImagen", nuevoProducto.URLImagen);
                 comando.Parameters.AddWithValue("@Ganancia", nuevoProducto.Ganancia);
+                comando.Parameters.AddWithValue("@StockMinimo", nuevoProducto.StockMinimo);
                 comando.Parameters.AddWithValue("@ID", productoID);
                 comando.Connection = conexion;
                 conexion.Open();
@@ -136,12 +141,13 @@ namespace Negocio
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
                 //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
-                comando.CommandText = "  INSERT INTO [TPC_ESPINOLA].[dbo].[Productos] (Titulo,Descripcion,URLImagen,Ganancia) VALUES (@Titulo,@Descripcion,@URLImagen,@Ganancia)";
+                comando.CommandText = "  INSERT INTO [TPC_ESPINOLA].[dbo].[Productos] (Titulo,Descripcion,URLImagen,Ganancia,StockMinimo) VALUES (@Titulo,@Descripcion,@URLImagen,@Ganancia,@StockMinimo)";
                 comando.Parameters.Clear();
                 comando.Parameters.AddWithValue("@Titulo", nuevoProducto.Titulo);
                 comando.Parameters.AddWithValue("@Descripcion", nuevoProducto.Descripcion);
                 comando.Parameters.AddWithValue("@URLImagen", nuevoProducto.URLImagen);
                 comando.Parameters.AddWithValue("@Ganancia", nuevoProducto.Ganancia);
+                comando.Parameters.AddWithValue("@StockMinimo", nuevoProducto.StockMinimo);
                 comando.Connection = conexion;
                 conexion.Open();
                 comando.ExecuteNonQuery();
@@ -204,6 +210,10 @@ namespace Negocio
                     producto.Descripcion = lector["Descripcion"].ToString();
                     producto.URLImagen = lector["URLImagen"].ToString();
                     producto.Ganancia = float.Parse(lector["Ganancia"].ToString());
+                    if (!Convert.IsDBNull(lector["StockMinimo"]))
+                    {
+                        producto.StockMinimo = int.Parse(lector["StockMinimo"].ToString());
+                    }
                 }
                 return producto;
             }

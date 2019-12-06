@@ -14,54 +14,75 @@
             var apellido = $('#txtApellido').val();
             var direccion = $('#txtDireccion').val();
             var email = $('#txtEmail').val();
-            //var ciudad = $('#txtCiudad').val();
+            var ciudad = $('#txtCiudad').val();
             var codigoPostal = $('#txtCodigoPostal').val();
             var fechaRegistro = $('#txtFechaRegistro').val();
-            debugger;
+
             if (!DNI || !nombre || !apellido || !direccion || !email || !ciudad || !codigoPostal || !fechaRegistro)
             {
                  alert('Debes completar todos los campos para proceder!');
                  return false;
+            }
 
+            if (isNaN(DNI))
+            {
+                alert("El DNI debe contener solo numeros! Ejemplo: 39515418");
+                return false;
             }
             return true;
 }
     </script>
-    <h1>Ingresa tus datos!</h1>
+    <div style="text-align:center">
+
+        <table class="table" style="text-align:center">
+                <thead class="thead-light">
+                <tr>
+                    <th colspan="3" style="font-size:x-large" >
+                        <label style="margin:0px 15px 10px 15px">INGRESA LOS DATOS</label>
+                    </th>
+                </tr>
+        </table>
+    </div>
+
     
+    <div style="margin-left:43%">
         <div class="form-group">
             <label>DNI</label>
-            <asp:TextBox ID="txtDNI" MaxLength="20" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtDNI" MaxLength="20" style="width:200px" ClientIDMode="Static" CssClass="form-control" runat="server" />
             <asp:Button Text="Buscar" Visible="false"  CssClass="btn btn-info btn-lg" runat="server"  OnClick="BuscarCUIT"/>
         </div>
         <div class="form-group">
             <label>Nombre</label>
-            <asp:TextBox ID="txtNombre" MaxLength="100" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtNombre" MaxLength="100" style="width:200px" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Apellido</label>
-            <asp:TextBox ID="txtApellido" MaxLength="50" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtApellido" MaxLength="50" style="width:200px" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Email</label>
-            <asp:TextBox ID="txtEmail" MaxLength="100" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtEmail" MaxLength="100" style="width:200px" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Direccion</label>
-            <asp:TextBox ID="txtDireccion" MaxLength="150" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtDireccion" MaxLength="150" style="width:200px" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Ciudad</label>
-            <asp:TextBox ID="txtCiudad" MaxLength="100" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtCiudad" MaxLength="100" style="width:200px" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Codigo Postal</label>
-            <asp:TextBox ID="txtCodigoPostal" MaxLength="8" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            <asp:TextBox ID="txtCodigoPostal" MaxLength="8" style="width:80px" ClientIDMode="Static" CssClass="form-control" runat="server" />
         </div>
     <div class="form-group">
             <label>Fecha de Registro</label>
-            <asp:TextBox ID="txtFechaRegistro" MaxLength="10" ClientIDMode="Static" CssClass="form-control" runat="server" />    
+            <asp:TextBox ID="txtFechaRegistro" MaxLength="10" style="width:150px" ClientIDMode="Static" CssClass="form-control" runat="server" />    
     </div>
-    <asp:Button Text="Aceptar" ID="btnAceptar"  OnClientClick="return validar()" OnClick ="CargarDatos"  CssClass="btn btn-primary" runat ="server"/>
+    </div>
 
+    <div style="text-align:center">
+
+    <asp:Button Text="Aceptar" ID="btnAceptar"  OnClientClick="return validar()" OnClick ="CargarDatos"  CssClass="btn btn-primary btn-lg" runat ="server"/>
+    </div>
 </asp:Content>

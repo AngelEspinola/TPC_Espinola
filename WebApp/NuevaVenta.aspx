@@ -2,26 +2,24 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-    <%-- <script>
+    <script>
          function validar() {
-            var DNI = $('#txtDNI').val();
-            var nombre = $('#txtNombre').val();
-            var apellido = $('#txtApellido').val();
-            var direccion = $('#txtDireccion').val();
-            var email = $('#txtEmail').val();
-            //var ciudad = $('#txtCiudad').val();
-            var codigoPostal = $('#txtCodigoPostal').val();
-            var fechaRegistro = $('#txtFechaRegistro').val();
-            debugger;
-            if (!DNI || !nombre || !apellido || !direccion || !email || !ciudad || !codigoPostal || !fechaRegistro)
+            var cantidad = $('#txtCantidad').val();
+            
+            if (!cantidad)
             {
-                 alert('Debes completar todos los campos para proceder!');
+                 alert('Debes ingresar una cantidad!');
                  return false;
 
-            }
+             }
+             if (isNaN(cantidad) || cantidad % 1 !== 0)
+             {
+                 alert('El campo "Cantidad" debe contener un numero entero!');
+                 return false;
+             }
             return true;
-}
-    </script>--%>
+            }
+    </script>
     
         <%--<div>
             <label>Cliente</label>
@@ -80,10 +78,10 @@
                     </td>
                     <td colspan="1">
                         <label>Cantidad </label>
-                        <asp:TextBox BackColor= "WhiteSmoke" runat="server" ID="txtCantidad" />
+                        <asp:TextBox BackColor= "WhiteSmoke" runat="server" ClientIDMode="Static" ID="txtCantidad" />
                     </td>
                     <td colspan="1" style="text-align:center">
-                        <asp:Button Text="Agregar Detalle" style="margin-right:10px"  CssClass ="btn btn-secondary" OnClientClick="AgregarDetalle" OnClick="AgregarDetalle" runat="server" />
+                        <asp:Button Text="Agregar Detalle" style="margin-right:10px"  CssClass ="btn btn-secondary" OnClientClick="return validar()" OnClick="AgregarDetalle" runat="server" />
                     </td>
                 </tr>
                 </table>
@@ -98,11 +96,9 @@
                             <asp:BoundField DataField="Titulo" HeaderText="Titulo" />
                             <asp:BoundField DataField="Descripcion" HeaderText="Descripcion" />
                             <asp:BoundField DataFormatString="{0:C}" DataField="Precio" HeaderText="Precio" />
-                            
-                             <asp:CheckBoxField ReadOnly="false" />
                         </Columns>  
             </asp:GridView>
-            <div style="text-align:center">
+            <div style="text-align:center;margin-bottom:20px">
                     <label>Importe Total:<%-- $<%=Session["totalDetalle"] != null? (float)Session["totalDetalle"] : 0%>--%></label>
                         <asp:TextBox ReadOnly="true" BackColor= "LightGray" runat="server" ID="txtTotal" />
                     <asp:Button Text="Guardar Venta" style="margin-left:10px" CssClass ="btn btn-secondary" OnClick="GuardarVenta" runat="server" />

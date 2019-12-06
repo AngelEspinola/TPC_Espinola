@@ -29,6 +29,7 @@ namespace WebApp
                     txtDescripcion.Text = productoLocal.Descripcion;
                     txtURLImagen.Text = productoLocal.URLImagen;
                     txtGanancia.Text = productoLocal.Ganancia.ToString();
+                    txtStockMinimo.Text = productoLocal.StockMinimo.ToString();
                 }
             }
         }
@@ -41,6 +42,7 @@ namespace WebApp
             productoLocal.Titulo = txtTitulo.Text;
             productoLocal.URLImagen = txtURLImagen.Text;
             productoLocal.Ganancia = float.Parse(txtGanancia.Text);
+            productoLocal.StockMinimo = int.Parse(txtStockMinimo.Text);
 
             if (Convert.ToInt32(Request.QueryString["idpkm"]) != 0)
             {

@@ -4,21 +4,21 @@
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
     <div style="text-align:center;margin:5px 0px 15px 0px">
     <h1>Productos</h1>
-        <asp:Button Text="Nuevo" CssClass="btn btn-secondary" onclick="Unnamed1_Click" runat="server" />
+        <asp:Button Text="Nuevo" CssClass="btn btn-primary btn-lg" onclick="Unnamed1_Click" runat="server" />
     </div>
 
 <%--    <asp:TextBox runat="server" AutoPostBack="true" Id="txtNumeroPokemon" OnTextChanged="txtNumeroPokemon_TextChanged" />--%>
     <%--<asp:DropDownList runat="server" ID="cboPokemons" />--%>
 
-    <div class="card-columns" style="margin-left: 25%; margin-right: 10px;">
+    <div class="card-columns" style="text-align:center; margin: 20px 15px 20px 15px;">
          <asp:Repeater runat="server" ID="repetidor">
             <ItemTemplate>
-                <div class="card">
+                <div class="card" >
                     <img src="<%#Eval("URLImagen") %>" class="card-img-top" alt="...">
-                    <div class="card-body" style="text-align:center">
-                        <h5 class="card-title"><%#Eval("Titulo")%></h5>
+                    <div class="card-body" >
+                        <h5 class="card-title"><%#Eval("ID")%> - <%#Eval("Titulo")%></h5>
                         <p class="card-text"><%#Eval("Descripcion")%></p>
-                        <p class="card-text"><%#Eval("ID")%></p>
+                        <p class="card-text">Stock Minimo: <%#Eval("StockMinimo")%></p>
                     </div>
                     <%--<a class="btn btn-secondary" style="resize:both" href="NuevoProducto.aspx?idpkm=<%#Eval("ID")%>">Modificar</a>--%>
                     <div style="text-align:center; margin-bottom:20px; margin-left:10px; margin-right:10px">

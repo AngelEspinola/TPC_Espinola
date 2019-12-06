@@ -49,8 +49,8 @@ namespace WebApp
             ProductoNegocio negocioProducto = new ProductoNegocio();
             nuevoDetalle.Producto = negocioProducto.traerProducto(ddlProductos.SelectedItem.Value);
             nuevoDetalle.Cantidad = int.Parse(txtCantidad.Text);
-            nuevoDetalle.Precio = float.Parse(txtPrecio.Text);
-            nuevoDetalle.SubTotal = (float.Parse(txtPrecio.Text) * int.Parse(txtCantidad.Text));
+            nuevoDetalle.Precio = float.Parse(txtPrecio.Text.Replace(".",","));
+            nuevoDetalle.SubTotal = (float.Parse(txtPrecio.Text.Replace(".",",")) * int.Parse(txtCantidad.Text));
 
             if (Session["listaDetalle"] != null)
             {
@@ -83,25 +83,23 @@ namespace WebApp
         {
             CompraNegocio negocioCompra = new CompraNegocio();
             ProveedorNegocio negocioProveedor = new ProveedorNegocio();
-            ProductoNegocio negocioProducto = new ProductoNegocio();
-            compraLocal = new Compra();
-            Detalle detalleVenta;
             List<Detalle> listaDetalle = new List<Detalle>();
-            compraLocal.Proveedor = negocioProveedor.traerProveedor(ddlProveedores.SelectedItem.Value);
-            
-            foreach (GridViewRow dgvItem in dgvDetalleCompra.Rows)
+
+            listaDetalle = Session["listaDetalle"] != null? (List<Detalle>)Session["listaDetalle"] : null;
+            if (listaDetalle != null)
             {
-                detalleVenta = new Detalle();
-                detalleVenta.Producto = negocioProducto.traerProducto(dgvDetalleCompra.Rows[dgvItem.RowIndex].Cells[0].Text);
-                detalleVenta.Cantidad = Convert.ToInt32(dgvDetalleCompra.Rows[dgvItem.RowIndex].Cells[2].Text);
-                detalleVenta.Precio = float.Parse(dgvDetalleCompra.Rows[dgvItem.RowIndex].Cells[3].Text);
-                listaDetalle.Add(detalleVenta);
+                compraLocal = new Compra();
+                compraLocal.Proveedor = negocioProveedor.traerProveedor(ddlProveedores.SelectedItem.Value);
+                compraLocal.Detalle = listaDetalle;
+                compraLocal.Fecha = DateTime.Now;
+                negocioCompra.agregarCompraYDetalle(compraLocal);
+                Response.Redirect("Default.aspx");
             }
-            compraLocal.Detalle = listaDetalle;
-            compraLocal.Fecha = DateTime.Now;
-            negocioCompra.agregarCompraYDetalle(compraLocal);
+            else
+            {
+                Alerta("Oops! No tienes ningun producto en tu lista de compra!");
+            }
             
-            Response.Redirect("Compras.aspx");
 
         }
         private void ActualizarProductos()
@@ -132,6 +130,10 @@ namespace WebApp
         }
         protected void RowDeleted(object sender, GridViewDeletedEventArgs e)
         {
+        }
+        private void Alerta(string mensaje)
+        {
+            Response.Write("<script>alert('"+mensaje+"');</script>");
         }
     }
 }

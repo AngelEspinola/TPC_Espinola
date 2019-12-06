@@ -81,7 +81,11 @@ namespace WebApp
                 ventaLocal.Cliente = negocioCliente.traerCliente(ddlClientes.SelectedItem.Value);
                 negocioVenta.agregarVentaYDetalle(ventaLocal);
 
-                Response.Redirect("Ventas.aspx");
+                Response.Redirect("Default.aspx");
+            }
+            else
+            {
+                Alerta("Oops! No tienes ningun producto en tu lista de Venta!");
             }
         }
 
@@ -171,6 +175,10 @@ namespace WebApp
         }
         protected void RowDeleted(object sender, GridViewDeletedEventArgs e)
         {
+        }
+        private void Alerta(string mensaje)
+        {
+            Response.Write("<script>alert('" + mensaje + "');</script>");
         }
     }
 
