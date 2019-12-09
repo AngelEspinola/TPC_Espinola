@@ -18,6 +18,7 @@ namespace WebApp
         {
             if (!IsPostBack)
             {
+                Session["listaDetalle"] = null;
                 ClienteNegocio negocioCliente = new ClienteNegocio();
                 ddlClientes.DataSource = negocioCliente.listar();
                 ddlClientes.DataTextField = "NombreYApellido";
@@ -66,14 +67,14 @@ namespace WebApp
 
         }
 
-
+        
         protected void GuardarVenta(object sender, EventArgs e)
         {
             VentaNegocio negocioVenta = new VentaNegocio();
             ClienteNegocio negocioCliente = new ClienteNegocio();
             List<Detalle> listaDetalle = Session["listaDetalle"] != null? (List<Detalle>)Session["listaDetalle"] : null;
 
-            if (listaDetalle != null)
+            if (listaDetalle != null && listaDetalle.Count != 0)
             {
                 ventaLocal = new Venta();
                 ventaLocal.Detalle = listaDetalle;
@@ -172,6 +173,7 @@ namespace WebApp
 
             dgvDetalleVenta.DataSource = listaDetalle;
             dgvDetalleVenta.DataBind();
+            ActualizarTotal();
         }
         protected void RowDeleted(object sender, GridViewDeletedEventArgs e)
         {
