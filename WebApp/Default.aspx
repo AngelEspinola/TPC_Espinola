@@ -27,6 +27,7 @@
         <div style="margin-top:20px">
             <asp:Button Text="Compras" CssClass="btn btn-secondary btn-lg" onclick ="Compras_OnClick" runat="server" />
             <asp:Button Text="Ventas" CssClass="btn btn-secondary btn-lg" onclick ="Ventas_OnClick" runat="server" />
+            <asp:Button Text="Reportes" CssClass="btn btn-secondary btn-lg" onclick ="Reportes_OnClick" runat="server" />
         </div>
        <%-- <div class="boton-imagen" style="margin-top:20px">
             <img src="https://st2.depositphotos.com/1794440/7673/v/950/depositphotos_76733111-stock-illustration-button-clients.jpg" alt="Alternate Text" />

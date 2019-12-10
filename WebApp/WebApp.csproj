@@ -70,6 +70,7 @@
     <Content Include="Clientes.aspx" />
     <Content Include="Compras.aspx" />
     <Content Include="Default.aspx" />
+    <Content Include="LogIn.aspx" />
     <Content Include="NuevaCompra.aspx" />
     <Content Include="NuevaVenta.aspx" />
     <Content Include="NuevoCliente.aspx" />
@@ -77,6 +78,7 @@
     <Content Include="NuevoProveedor.aspx" />
     <Content Include="Productos.aspx" />
     <Content Include="Proveedores.aspx" />
+    <Content Include="Reportes.aspx" />
     <Content Include="Ventas.aspx" />
     <Content Include="Web.config" />
     <Content Include="WebForm1.aspx" />
@@ -102,6 +104,13 @@
     </Compile>
     <Compile Include="Default.aspx.designer.cs">
       <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="LogIn.aspx.cs">
+      <DependentUpon>LogIn.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="LogIn.aspx.designer.cs">
+      <DependentUpon>LogIn.aspx</DependentUpon>
     </Compile>
     <Compile Include="NuevaCompra.aspx.cs">
       <DependentUpon>NuevaCompra.aspx</DependentUpon>
@@ -159,6 +168,13 @@
     </Compile>
     <Compile Include="Proveedores.aspx.designer.cs">
       <DependentUpon>Proveedores.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Reportes.aspx.cs">
+      <DependentUpon>Reportes.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Reportes.aspx.designer.cs">
+      <DependentUpon>Reportes.aspx</DependentUpon>
     </Compile>
     <Compile Include="Ventas.aspx.cs">
       <DependentUpon>Ventas.aspx</DependentUpon>

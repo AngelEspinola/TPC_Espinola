@@ -35,6 +35,11 @@ namespace WebApp
             //Response.Redirect("Compras.aspx");
             Response.Redirect("NuevaCompra.aspx");
         }
+
+        protected void Reportes_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("Reportes.aspx");
+        }
     }
 
     
