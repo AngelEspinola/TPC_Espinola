@@ -14,12 +14,13 @@
 <script type="text/javascript">
 
     function LogUserIn() {
+        var data = "{'user': '" + $('#login').val() +"', 'password': '" + $('#password').val() + "'}";
         event.preventDefault();
         $("#UpdatePanel").html("<div style='text-align:center; background-color:yellow; border:1px solid red; padding:3px; width:200px'>Please Wait...</div>");
         $.ajax({
             type: "POST",
             url: "LogIn.aspx/LogUserIn",
-            data: "{}",
+            data: data,
             dataType: "json",
             contentType: "application/json; charset=utf-8",
             success: OnSuccess,
@@ -28,11 +29,20 @@
     }
 
     function OnSuccess(data) {
-        alert(data.d);
+        if (data.d == "exito")
+        {
+            window.location.href = 'Default.aspx';
+            return false;
+        }
+        else if (data.d == "fallo")
+        {
+            //Fallo el loggeo de usuario
+            alert("Usuario y/o contraseña no valido/s");
+        }
     }
 
     function OnError(data) {
-        alert('onError');
+        alert('Error interno. Por favor intente nuevamente');
     }
     $("#UpdatePanel").html(TableContent);
 </script>
