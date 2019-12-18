@@ -88,7 +88,6 @@ namespace Negocio
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
             List<Detalle> listado = new List<Detalle>();
-            Detalle detalle;
             try
             {
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;

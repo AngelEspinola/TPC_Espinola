@@ -18,11 +18,11 @@ namespace WebApp
         //    Response.Write("<script>alert('PageLoad');</script>");
         }
 
-        [WebMethod]
+        [WebMethod(EnableSession = true)]
         [ScriptMethod(ResponseFormat = ResponseFormat.Json)]
-        public static string LogUserIn(string user, string password)
+        public static Usuario LogUserIn(string user, string password)
         {
-            string response = "";
+            Usuario response = null;
 
             UsuarioNegocio negocioUsuario = new UsuarioNegocio();
             List<Usuario> listaUsuarios = negocioUsuario.listar();
@@ -30,12 +30,9 @@ namespace WebApp
 
             if (match != null)
             {
-                //Reconocio el usuario y contraseña ingresado con uno existente en la bbdd
-                response = "exito";
-            }
-            else
-            {
-                response = "fallo";
+               //Reconocio el usuario y contraseña ingresado con uno existente en la bbdd
+               HttpContext.Current.Session["user"] = match;
+               response = match;
             }
             return response;
         }

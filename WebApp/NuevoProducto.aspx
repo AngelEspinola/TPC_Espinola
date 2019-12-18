@@ -61,6 +61,10 @@
                 <label>Stock Minimo</label>
                 <asp:TextBox ID="txtStockMinimo" MaxLength="50" style="width:80px" ClientIDMode="Static" CssClass="form-control" runat="server" />
             </div>
+        <div class="form-group" style="width:200px">
+                <label>Stock</label>
+                <asp:TextBox ID="txtStock" MaxLength="99999999" style="width:80px" ClientIDMode="Static" CssClass="form-control" runat="server" />
+            </div>
                 <label style="font-size:small">(*) Obligatorio</label>
     </div>
     <div style="text-align:center">

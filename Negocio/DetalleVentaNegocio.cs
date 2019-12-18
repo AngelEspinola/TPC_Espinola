@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace Negocio
 {
-    class DetalleVentaNegocio
+    public class DetalleVentaNegocio
     {
         public List<Detalle> listar(string VentaID)
         {
@@ -22,23 +22,59 @@ namespace Negocio
             {
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
-                //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
                 comando.CommandText = "SELECT * FROM [TPC_ESPINOLA].[dbo].[DetalleVentas] WHERE [TPC_ESPINOLA].[dbo].[DetalleVentas].VentaID = @ID";
                 comando.Connection = conexion;
                 comando.Parameters.AddWithValue("@ID", VentaID);
                 conexion.Open();
                 lector = comando.ExecuteReader();
                 ProductoNegocio negocioProducto = new ProductoNegocio();
-                if(lector.Read())
+                while (lector.Read())
                 {
                     detalleVenta = new Detalle();
+                    detalleVenta.ID = Convert.ToInt32(lector["ID"].ToString());
+                    detalleVenta.Precio = float.Parse(lector["Precio"].ToString());
                     detalleVenta.Producto = negocioProducto.traerProducto(lector["ProductoID"].ToString());
                     detalleVenta.Cantidad = int.Parse(lector["Cantidad"].ToString());
+                    detalleVenta.SubTotal = int.Parse(lector["Cantidad"].ToString()) * float.Parse(lector["Precio"].ToString());
 
                     listado.Add(detalleVenta);
                 }
 
                 return listado;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public float calcularTotal(string VentaID)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            SqlDataReader lector;
+            float total = 0;
+            Detalle detalleVenta;
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "SELECT * FROM [TPC_ESPINOLA].[dbo].[DetalleVentas] WHERE [TPC_ESPINOLA].[dbo].[DetalleVentas].VentaID = @ID";
+                comando.Connection = conexion;
+                comando.Parameters.AddWithValue("@ID", VentaID);
+                conexion.Open();
+                lector = comando.ExecuteReader();
+                ProductoNegocio negocioProducto = new ProductoNegocio();
+                while (lector.Read())
+                {
+                    total += int.Parse(lector["Cantidad"].ToString()) * float.Parse(lector["Precio"].ToString());
+                }
+
+                return total;
 
             }
             catch (Exception ex)

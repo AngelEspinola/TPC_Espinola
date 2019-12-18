@@ -29,12 +29,12 @@
     }
 
     function OnSuccess(data) {
-        if (data.d == "exito")
+        if (data.d != null)
         {
             window.location.href = 'Default.aspx';
             return false;
         }
-        else if (data.d == "fallo")
+        else
         {
             //Fallo el loggeo de usuario
             alert("Usuario y/o contraseña no valido/s");
@@ -205,6 +205,27 @@ input[type=text] {
   border-radius: 5px 5px 5px 5px;
 }
 
+input[type=password] {
+  background-color: #f6f6f6;
+  border: none;
+  color: #0d0d0d;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 5px;
+  width: 85%;
+  border: 2px solid #f6f6f6;
+  -webkit-transition: all 0.5s ease-in-out;
+  -moz-transition: all 0.5s ease-in-out;
+  -ms-transition: all 0.5s ease-in-out;
+  -o-transition: all 0.5s ease-in-out;
+  transition: all 0.5s ease-in-out;
+  -webkit-border-radius: 5px 5px 5px 5px;
+  border-radius: 5px 5px 5px 5px;
+}
+
 input[type=text]:focus {
   background-color: #fff;
   border-bottom: 2px solid #5fbae9;
@@ -344,7 +365,7 @@ input[type=text]:placeholder {
             <!-- Login Form -->
             <form runat="server">
               <input type="text" id="login" class="fadeIn second" name="login" placeholder="login"/>
-              <input type="text" id="password" class="fadeIn third" name="login" placeholder="password"/>
+              <input type="password" id="password" class="fadeIn third" name="login" placeholder="password"/>
                <%-- <asp:TextBox runat="server" id="password" TextMode="Password" CssClass="fadeIn third"  placeholder="password"/>--%>
               <input type="submit" class="fadeIn fourth" onclick="LogUserIn()" value="Log In"/>
             </form>

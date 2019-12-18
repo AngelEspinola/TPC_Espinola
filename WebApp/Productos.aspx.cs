@@ -19,6 +19,16 @@ namespace WebApp
             {
                 BindearListaProductos();
             }
+            if (Session["user"] != null)
+            {
+                Usuario user = (Usuario)Session["user"];
+                Label userTopNav = (Label)Master.FindControl("userTopNav");
+                userTopNav.Text = user.Identificador;
+            }
+            else
+            {
+                Response.Redirect("LogIn.aspx");
+            }
         }
 
         protected void BindearListaProductos ()

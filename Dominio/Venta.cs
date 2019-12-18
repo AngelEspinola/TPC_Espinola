@@ -12,6 +12,7 @@ namespace Dominio
         public List<Detalle> Detalle { get; set; }
         public Cliente Cliente { get; set; }
         public DateTime Fecha { get; set; }
+        public float Total { get; set; }
 
     }
 }

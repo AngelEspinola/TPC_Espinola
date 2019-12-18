@@ -22,6 +22,16 @@ namespace WebApp
             {
                 CargarGridView();
             }
+            if (Session["user"] != null)
+            {
+                Usuario user = (Usuario)Session["user"];
+                Label userTopNav = (Label)Master.FindControl("userTopNav");
+                userTopNav.Text = user.Identificador;
+            }
+            else
+            {
+                Response.Redirect("LogIn.aspx");
+            }
 
             ProveedorID = Request.QueryString["idpkm"];
             if (ProveedorID != null && !IsPostBack)

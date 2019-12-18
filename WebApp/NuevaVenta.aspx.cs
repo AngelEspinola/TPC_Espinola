@@ -29,6 +29,16 @@ namespace WebApp
                 dgvProductos.DataSource = negocioProducto.listar();
                 dgvProductos.DataBind();
             }
+            if (Session["user"] != null)
+            {
+                Usuario user = (Usuario)Session["user"];
+                Label userTopNav = (Label)Master.FindControl("userTopNav");
+                userTopNav.Text = user.Identificador;
+            }
+            else
+            {
+                Response.Redirect("LogIn.aspx");
+            }
         }
 
         //public void GuardarVenta(object sender, EventArgs e)
@@ -73,16 +83,24 @@ namespace WebApp
             VentaNegocio negocioVenta = new VentaNegocio();
             ClienteNegocio negocioCliente = new ClienteNegocio();
             List<Detalle> listaDetalle = Session["listaDetalle"] != null? (List<Detalle>)Session["listaDetalle"] : null;
-
+            string response = "";
             if (listaDetalle != null && listaDetalle.Count != 0)
             {
                 ventaLocal = new Venta();
                 ventaLocal.Detalle = listaDetalle;
                 ventaLocal.Fecha = DateTime.Now;
                 ventaLocal.Cliente = negocioCliente.traerCliente(ddlClientes.SelectedItem.Value);
-                negocioVenta.agregarVentaYDetalle(ventaLocal);
-
-                Response.Redirect("Default.aspx");
+                response = negocioVenta.agregarVentaYDetalle(ventaLocal);
+                if (response == "")
+                {
+                    Session["Exito"] = "Venta generada exitosamente!";
+                    Response.Redirect("Exito.aspx");
+                }
+                else
+                {
+                    Session["Error"] = response;
+                    Response.Redirect("Error.aspx");
+                }
             }
             else
             {

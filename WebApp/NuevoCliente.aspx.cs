@@ -22,6 +22,16 @@ namespace WebApp
             ProductoNegocio negocio = new ProductoNegocio();
             List<Producto> listaProductos = negocio.listar();
             producto = listaProductos.Find(J => J.ID == productoID);
+            if (Session["user"] != null)
+            {
+                Usuario user = (Usuario)Session["user"];
+                Label userTopNav = (Label)Master.FindControl("userTopNav");
+                userTopNav.Text = user.Identificador;
+            }
+            else
+            {
+                Response.Redirect("LogIn.aspx");
+            }
 
         }
         protected void btnAceptar_Click(object sender, EventArgs e)

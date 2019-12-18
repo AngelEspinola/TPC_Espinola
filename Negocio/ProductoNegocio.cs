@@ -43,6 +43,7 @@ namespace Negocio
                     {
                         producto.StockMinimo = int.Parse(lector["StockMinimo"].ToString());
                     }
+                    producto.Stock = long.Parse(lector["Stock"].ToString());
 
                     listado.Add(producto);
                 }
@@ -102,12 +103,10 @@ namespace Negocio
         {
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
-            List<Producto> listado = new List<Producto>();
             try
             {
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
-                //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
                 comando.CommandText = "UPDATE [TPC_ESPINOLA].[dbo].[Productos] SET Titulo = @Titulo, Descripcion = @Descripcion, URLImagen = @URLImagen, Ganancia = @Ganancia, StockMinimo = @StockMinimo WHERE[TPC_ESPINOLA].[dbo].[Productos].ID = @ID";
                 comando.Parameters.Clear();
                 comando.Parameters.AddWithValue("@Titulo", nuevoProducto.Titulo);
@@ -116,6 +115,33 @@ namespace Negocio
                 comando.Parameters.AddWithValue("@Ganancia", nuevoProducto.Ganancia);
                 comando.Parameters.AddWithValue("@StockMinimo", nuevoProducto.StockMinimo);
                 comando.Parameters.AddWithValue("@ID", productoID);
+                comando.Connection = conexion;
+                conexion.Open();
+                comando.ExecuteNonQuery();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+
+            finally
+            {
+                conexion.Close();
+            }
+        }
+
+        public void modificarStock(Producto producto, int cantidad, bool esAlta)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "UPDATE [TPC_ESPINOLA].[dbo].[Productos] SET Stock = @Stock WHERE[TPC_ESPINOLA].[dbo].[Productos].ID = @ID";
+                comando.Parameters.Clear();
+                comando.Parameters.AddWithValue("@Stock", esAlta? (producto.Stock + cantidad) : (producto.Stock - cantidad));
+                comando.Parameters.AddWithValue("@ID", producto.ID);
                 comando.Connection = conexion;
                 conexion.Open();
                 comando.ExecuteNonQuery();
@@ -141,7 +167,7 @@ namespace Negocio
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
                 //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
-                comando.CommandText = "  INSERT INTO [TPC_ESPINOLA].[dbo].[Productos] (Titulo,Descripcion,URLImagen,Ganancia,StockMinimo) VALUES (@Titulo,@Descripcion,@URLImagen,@Ganancia,@StockMinimo)";
+                comando.CommandText = "  INSERT INTO [TPC_ESPINOLA].[dbo].[Productos] (Titulo,Descripcion,URLImagen,Ganancia,StockMinimo,Stock) VALUES (@Titulo,@Descripcion,@URLImagen,@Ganancia,@StockMinimo,'0')";
                 comando.Parameters.Clear();
                 comando.Parameters.AddWithValue("@Titulo", nuevoProducto.Titulo);
                 comando.Parameters.AddWithValue("@Descripcion", nuevoProducto.Descripcion);
@@ -214,6 +240,7 @@ namespace Negocio
                     {
                         producto.StockMinimo = int.Parse(lector["StockMinimo"].ToString());
                     }
+                    producto.Stock = long.Parse(lector["Stock"].ToString());
                 }
                 return producto;
             }

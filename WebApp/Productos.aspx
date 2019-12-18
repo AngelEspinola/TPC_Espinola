@@ -19,6 +19,7 @@
                         <h5 class="card-title"><%#Eval("ID")%> - <%#Eval("Titulo")%></h5>
                         <p class="card-text"><%#Eval("Descripcion")%></p>
                         <p class="card-text">Stock Minimo: <%#Eval("StockMinimo")%></p>
+                        <p class="card-text">Stock: <%#Eval("Stock")%></p>
                     </div>
                     <%--<a class="btn btn-secondary" style="resize:both" href="NuevoProducto.aspx?idpkm=<%#Eval("ID")%>">Modificar</a>--%>
                     <div style="text-align:center; margin-bottom:20px; margin-left:10px; margin-right:10px">

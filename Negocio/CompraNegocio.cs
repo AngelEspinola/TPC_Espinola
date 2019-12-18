@@ -86,12 +86,15 @@ namespace Negocio
         {
             DetalleCompraNegocio negocioDetalleCompra = new DetalleCompraNegocio();
             ProductoNegocio negocioProducto = new ProductoNegocio();
+            Producto producto;
             string IDCompra = this.agregar(nuevaCompra);
             if (IDCompra != "")
             {
                 foreach (Detalle det in nuevaCompra.Detalle)
                 {
                     negocioDetalleCompra.agregar(det, nuevaCompra.Proveedor.ID.ToString(), IDCompra);
+                    producto = negocioProducto.traerProducto(det.Producto.ID.ToString());
+                    negocioProducto.modificarStock(producto, det.Cantidad, true); // alta = true / baja = false
                 }
             }
             else

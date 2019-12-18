@@ -14,6 +14,7 @@ namespace Dominio
         public string URLImagen { get; set; }
         public float Precio { get; set; }
         public float Ganancia { get; set; }
+        public long Stock { get; set; }
         public int StockMinimo { get; set; }
         public override string ToString()
         {

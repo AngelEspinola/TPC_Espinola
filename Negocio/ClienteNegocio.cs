@@ -19,12 +19,10 @@ namespace Negocio
             SqlDataReader lector;
             List<Cliente> listado = new List<Cliente>();
             Cliente cliente;
-            //PoderSecundarioNegocio poderSecundarioNegocio = new PoderSecundarioNegocio();
             try
             {
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
-                //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
                 comando.CommandText = "SELECT [Id],[DNI],[Nombre],[Apellido],[Email],[Direccion],[Ciudad],[CodigoPostal],[FechaRegistro] FROM[TPC_ESPINOLA].[dbo].[Clientes]";
                 comando.Connection = conexion;
                 conexion.Open();
@@ -80,12 +78,10 @@ namespace Negocio
         {
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
-            //PoderSecundarioNegocio poderSecundarioNegocio = new PoderSecundarioNegocio();
             try
             {
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
-                //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
                 comando.CommandText = "  INSERT INTO [TPC_ESPINOLA].[dbo].[Clientes] (DNI,Nombre,Apellido,Email,Direccion,Ciudad,CodigoPostal,FechaRegistro) VALUES (@DNI,@Nombre,@Apellido,@Email,@Direccion,@Ciudad,@CodigoPostal,@FechaRegistro)";
                 comando.Parameters.Clear();
                 comando.Parameters.AddWithValue("@DNI", nuevoCliente.DNI);
@@ -119,7 +115,6 @@ namespace Negocio
             {
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
-                //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
                 comando.CommandText = "UPDATE [TPC_ESPINOLA].[dbo].[Clientes] SET DNI = @DNI, Nombre = @Nombre, Apellido = @Apellido, Email = @Email, Direccion = @Direccion, Ciudad = @Ciudad, CodigoPostal = @CodigoPostal, FechaRegistro = @FechaRegistro WHERE[TPC_ESPINOLA].[dbo].[Clientes].ID = @ID";
                 comando.Parameters.Clear();
                 comando.Parameters.AddWithValue("@ID", cliente.ID);
@@ -152,12 +147,10 @@ namespace Negocio
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
             string idCliente = null;
-            //PoderSecundarioNegocio poderSecundarioNegocio = new PoderSecundarioNegocio();
             try
             {
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
-                //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
                 comando.CommandText = "SELECT [Id] FROM[TP_WEB].[dbo].[Clientes] WHERE[TP_WEB].[dbo].[Clientes].DNI = @DNI";
                 comando.Connection = conexion;
                 comando.Parameters.Clear();
@@ -193,7 +186,6 @@ namespace Negocio
             {
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
                 comando.CommandType = System.Data.CommandType.Text;
-                //MSF-20190420: agregué todos los datos del heroe. Incluso su universo, que lo traigo con join.
                 comando.CommandText = "SELECT * FROM[TPC_ESPINOLA].[dbo].[Clientes] WHERE [TPC_ESPINOLA].[dbo].[Clientes].Id = @ID";
                 comando.Connection = conexion;
                 comando.Parameters.Clear();

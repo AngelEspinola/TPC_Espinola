@@ -30,7 +30,18 @@ namespace WebApp
                     txtURLImagen.Text = productoLocal.URLImagen;
                     txtGanancia.Text = productoLocal.Ganancia.ToString();
                     txtStockMinimo.Text = productoLocal.StockMinimo.ToString();
+                    txtStock.Text = productoLocal.Stock.ToString();
                 }
+            }
+            if (Session["user"] != null)
+            {
+                Usuario user = (Usuario)Session["user"];
+                Label userTopNav = (Label)Master.FindControl("userTopNav");
+                userTopNav.Text = user.Identificador;
+            }
+            else
+            {
+                Response.Redirect("LogIn.aspx");
             }
         }
         public void CargarDatos(object sender, EventArgs e)
@@ -43,6 +54,7 @@ namespace WebApp
             productoLocal.URLImagen = txtURLImagen.Text;
             productoLocal.Ganancia = float.Parse(txtGanancia.Text);
             productoLocal.StockMinimo = int.Parse(txtStockMinimo.Text);
+            productoLocal.Stock = long.Parse(txtStock.Text);
 
             if (Convert.ToInt32(Request.QueryString["idpkm"]) != 0)
             {

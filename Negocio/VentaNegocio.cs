@@ -36,6 +36,8 @@ namespace Negocio
                     venta.ID = Convert.ToInt32(lector["Id"]);
                     venta.Cliente = negocioCliente.traerCliente(lector["ClienteID"].ToString());
                     venta.Detalle = negocioDetalleVenta.listar(lector["Id"].ToString());
+                    venta.Fecha = Convert.ToDateTime(lector["Fecha"]);
+                    venta.Total = negocioDetalleVenta.calcularTotal(lector["ID"].ToString());
 
                     listado.Add(venta);
                 }
@@ -83,17 +85,50 @@ namespace Negocio
         //        conexion.Close();
         //    }
         //}
-        public void agregarVentaYDetalle(Venta nuevaVenta)
+        private bool ValidarStock(Venta nuevaVenta)
         {
-            DetalleVentaNegocio negocioDetalleVenta = new DetalleVentaNegocio();
-            string IDVenta = this.agregar(nuevaVenta);
-            if (IDVenta != "")
+            ProductoNegocio negocioProducto = new ProductoNegocio();
+            Producto producto;
+            bool response = true;
+            foreach (Detalle det in nuevaVenta.Detalle)
             {
-                foreach (Detalle detalleVenta in nuevaVenta.Detalle)
+                producto = negocioProducto.traerProducto(det.Producto.ID.ToString());
+                if (producto != null)
                 {
-                    negocioDetalleVenta.agregar(detalleVenta, nuevaVenta.Cliente.ID.ToString(), IDVenta);
+                    if (producto.Stock < det.Cantidad)
+                    {
+                        response = false;
+                    }
                 }
             }
+            return response;
+        }
+        public string agregarVentaYDetalle(Venta nuevaVenta)
+        {
+            DetalleVentaNegocio negocioDetalleVenta = new DetalleVentaNegocio();
+            ProductoNegocio negocioProducto = new ProductoNegocio();
+            string response = "";
+            if (ValidarStock(nuevaVenta) == true)
+            {
+                string IDVenta = this.agregar(nuevaVenta);
+                if (IDVenta != "")
+                {
+                    foreach (Detalle detalleVenta in nuevaVenta.Detalle)
+                    {
+                        negocioDetalleVenta.agregar(detalleVenta, nuevaVenta.Cliente.ID.ToString(), IDVenta);
+                        negocioProducto.modificarStock(detalleVenta.Producto, detalleVenta.Cantidad, false); // alta = true / baja = false
+                    }
+                }
+                else
+                {
+                    response = "Se encontro una falla al generar la venta! Por favor, intente nuevamente.";
+                }
+            }
+            else
+            {
+                response = "Whoops! Al parecer no hay stock suficiente para al menos 1 de los productos detallados";
+            }
+            return response;
         }
         
         protected string agregar(Venta nuevaVenta)
