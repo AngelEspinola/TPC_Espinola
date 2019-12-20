@@ -27,14 +27,15 @@ namespace Negocio
                 conexion.Open();
                 lector = comando.ExecuteReader();
                 ProveedorNegocio negocioProveedor= new ProveedorNegocio();
-                DetalleVentaNegocio negocioDetalleVenta = new DetalleVentaNegocio();
+                DetalleCompraNegocio negocioDetalleCompra = new DetalleCompraNegocio();
                 while (lector.Read())
                 {
                     compra = new Compra();
                     compra.ID = Convert.ToInt32(lector["Id"]);
                     compra.Proveedor = negocioProveedor.traerProveedor(lector["ProveedorID"].ToString());
-                    compra.Detalle = negocioDetalleVenta.listar(lector["Id"].ToString());
+                    compra.Detalle = negocioDetalleCompra.listar(lector["Id"].ToString());
                     compra.Fecha = Convert.ToDateTime(lector["Fecha"].ToString());
+                    compra.Total = negocioDetalleCompra.calcularTotal(lector["ID"].ToString());
 
                     listado.Add(compra);
                 }
@@ -82,11 +83,12 @@ namespace Negocio
         //        conexion.Close();
         //    }
         //}
-        public void agregarCompraYDetalle(Compra nuevaCompra)
+        public string agregarCompraYDetalle(Compra nuevaCompra)
         {
             DetalleCompraNegocio negocioDetalleCompra = new DetalleCompraNegocio();
             ProductoNegocio negocioProducto = new ProductoNegocio();
             Producto producto;
+            string response = "";
             string IDCompra = this.agregar(nuevaCompra);
             if (IDCompra != "")
             {
@@ -99,8 +101,10 @@ namespace Negocio
             }
             else
             {
+                response = "Error al generar compra! intente nuevamente mas tarde";
                 //Falla al generar la compra
             }
+            return response;
 
         }
 

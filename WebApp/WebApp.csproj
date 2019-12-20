@@ -85,6 +85,7 @@
     <Content Include="Productos.aspx" />
     <Content Include="Proveedores.aspx" />
     <Content Include="Reportes.aspx" />
+    <Content Include="Stock.aspx" />
     <Content Include="Usuarios.aspx" />
     <Content Include="Ventas.aspx" />
     <Content Include="Web.config" />
@@ -202,6 +203,13 @@
     </Compile>
     <Compile Include="Reportes.aspx.designer.cs">
       <DependentUpon>Reportes.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Stock.aspx.cs">
+      <DependentUpon>Stock.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Stock.aspx.designer.cs">
+      <DependentUpon>Stock.aspx</DependentUpon>
     </Compile>
     <Compile Include="Usuarios.aspx.cs">
       <DependentUpon>Usuarios.aspx</DependentUpon>

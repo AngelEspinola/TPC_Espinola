@@ -15,8 +15,16 @@ namespace WebApp
             if (Session["user"] != null)
             {
                 Usuario user = (Usuario)Session["user"];
-                Label userTopNav = (Label)Master.FindControl("userTopNav");
-                userTopNav.Text = user.Identificador;
+                if (user.Nivel == 1)
+                {
+                    Label userTopNav = (Label)Master.FindControl("userTopNav");
+                    userTopNav.Text = user.Identificador;
+                }
+                else
+                {
+                    Session["Error"] = "Whoops! parece que no tenes los permisos necesarios para ingresar a esta pagina.";
+                    Response.Redirect("Error.aspx");
+                }
             }
             else
             {
@@ -30,6 +38,11 @@ namespace WebApp
         protected void Compras_OnClick(object sender, EventArgs e)
         {
             Response.Redirect("Compras.aspx");
+        }
+
+        protected void Stock_OnClick(object sender, EventArgs e)
+        {
+            Response.Redirect("Stock.aspx");
         }
     }
 }

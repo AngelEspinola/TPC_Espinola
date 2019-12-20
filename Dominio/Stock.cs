@@ -6,7 +6,10 @@ using System.Threading.Tasks;
 
 namespace Dominio
 {
-    class Stock
+    public class Stock
     {
+        public Producto Producto { get; set; }
+        public long StockActual { get; set; }
+        public long StockMinimo { get; set; }
     }
 }

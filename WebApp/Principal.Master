@@ -59,7 +59,7 @@
             <div style="margin:2px 10px 0px 0px;text-align:right" >
                  <img src="/img/icon-user-you.png"  alt="User Icon" />
                 <asp:Label runat="server"  style="color:aliceblue;margin-right:10px" ID="userTopNav"></asp:Label>
-                <asp:Button CssClass="btn btn-primary btn-sm" Text="Log Out" OnClick="LogOut_OnClick" runat="server" />
+                <asp:Button CssClass="btn btn-primary btn-sm" Text="Cerrar Sesion" OnClick="LogOut_OnClick" runat="server" />
             </div>
             <%--  <a href="#news">News</a>
                 <a href="#contact">Contact</a>

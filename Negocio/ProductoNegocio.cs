@@ -11,7 +11,7 @@ namespace Negocio
 {
     public class ProductoNegocio
     {
-        public List<Producto> listar()
+        public List<Producto> listar(bool soloEscasos = false)
         {
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
@@ -43,9 +43,19 @@ namespace Negocio
                     {
                         producto.StockMinimo = int.Parse(lector["StockMinimo"].ToString());
                     }
+                    else
+                    {
+                        producto.StockMinimo = 0;
+                    }
                     producto.Stock = long.Parse(lector["Stock"].ToString());
-
-                    listado.Add(producto);
+                    if (soloEscasos == false)
+                    {
+                        listado.Add(producto);
+                    }
+                    else if (producto.Stock <= producto.StockMinimo)
+                    {
+                        listado.Add(producto);
+                    }
                 }
 
                 return listado;

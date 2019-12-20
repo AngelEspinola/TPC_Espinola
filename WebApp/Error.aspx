@@ -13,9 +13,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-        <div>
-            <h1 class="form-text">ERROR! :(</h1>
-            <p><% = Session["Error"] %></p>
+        <div style="text-align:center">
+            <img  style="margin:20px 0px 15px 0px" src="/img/error-cfs.png" alt="Logo ERROR" />
+            <p class="font-weight-bolder" style="font-size:larger"><% = Session["Error"] %></p>
             <asp:Button CssClass="btn btn-primary btn-lg" Text="Volver a la pagina principal" ID="Button1" OnClick="btnVolver_OnClick" runat="server" />
         </div>
 

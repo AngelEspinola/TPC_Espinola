@@ -16,7 +16,7 @@
     function LogUserIn() {
         var data = "{'user': '" + $('#login').val() +"', 'password': '" + $('#password').val() + "'}";
         event.preventDefault();
-        $("#UpdatePanel").html("<div style='text-align:center; background-color:yellow; border:1px solid red; padding:3px; width:200px'>Please Wait...</div>");
+        $("#UpdatePanel").html("Por favor espere...");
         $.ajax({
             type: "POST",
             url: "LogIn.aspx/LogUserIn",
@@ -37,6 +37,7 @@
         else
         {
             //Fallo el loggeo de usuario
+            $("#UpdatePanel").html("");
             alert("Usuario y/o contraseña no valido/s");
         }
     }
@@ -364,13 +365,12 @@ input[type=text]:placeholder {
 
             <!-- Login Form -->
             <form runat="server">
-              <input type="text" id="login" class="fadeIn second" name="login" placeholder="login"/>
-              <input type="password" id="password" class="fadeIn third" name="login" placeholder="password"/>
+              <input type="text" id="login" class="fadeIn second" name="login" placeholder="usuario"/>
+              <input type="password" id="password" class="fadeIn third" name="login" placeholder="contraseña"/>
                <%-- <asp:TextBox runat="server" id="password" TextMode="Password" CssClass="fadeIn third"  placeholder="password"/>--%>
-              <input type="submit" class="fadeIn fourth" onclick="LogUserIn()" value="Log In"/>
+              <input type="submit" class="fadeIn fourth" onclick="LogUserIn()" value="Iniciar sesion"/>
             </form>
-          <div id="UpdatePanel">
- 
+          <div id="UpdatePanel" class="fadeIn second" style="text-align:center">
             </div>  
             <!-- Remind Passowrd -->
             <div id="formFooter">

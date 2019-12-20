@@ -13,9 +13,9 @@
 </head>
 <body>
     <form id="form1" runat="server">
-         <div>
-            <h1>EXITO!</h1>
-            <p><% = Session["Exito"] %></p>
+          <div style="text-align:center">
+            <img  style="margin:20px 0px 15px 0px" src="/img/734241.png" alt="Logo EXITO" />
+            <p class="font-weight-bolder" style="font-size:larger"><% = Session["Exito"] %></p>
             <asp:Button CssClass="btn btn-primary btn-lg" Text="Volver a la pagina principal" ID="btnVolver" OnClick="btnVolver_OnClick" runat="server" />
         </div>
     </form>

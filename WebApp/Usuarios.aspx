@@ -2,10 +2,19 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
 </asp:Content>
 <asp:Content ID="Content2" ContentPlaceHolderID="ContentPlaceHolder1" runat="server">
-        <div style="text-align:center;margin-bottom:15px">
-        <h1>USUARIOS</h1>
-    <asp:Button Text="Nuevo" CssClass="btn btn-secondary" onclick="btnNuevoUsuario_OnClick" runat="server" />
+    <div style="text-align:center">
+        <table class="table" style="text-align:center">
+                <thead class="thead-light">
+                <tr>
+                    <th colspan="3" style="font-size:x-large" >
+                        <label style="margin:0px 15px 10px 15px">USUARIOS</label>
+                    </th>
+                </tr>
+        </table>
+        <asp:Button Text="Nuevo" CssClass="btn btn-primary btn-lg" onclick="btnNuevoUsuario_OnClick" runat="server" />
     </div>
+
+    <div style="text-align:center;margin:15px 40px 0px 40px">
       <asp:GridView CssClass="table" ID="dgvUsuarios" runat="server" AutoGenerateColumns="false" OnRowEditing="dgvUsuarios_RowEditing" OnRowCancelingEdit="dgvUsuarios_RowCancelingEdit" OnRowDeleting="dgvUsuarios_RowDeleting" OnRowUpdating="dgvUsuarios_RowUpdating">
         <Columns>    
             <asp:BoundField DataField="ID" HeaderText="ID" />
@@ -17,5 +26,6 @@
             <asp:CommandField ShowDeleteButton="true" />
         </Columns>  
     </asp:GridView>
+        </div>
     
 </asp:Content>

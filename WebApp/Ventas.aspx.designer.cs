@@ -13,6 +13,51 @@ namespace WebApp {
     public partial class Ventas {
         
         /// <summary>
+        /// txtClienteDNI control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtClienteDNI;
+        
+        /// <summary>
+        /// ddlFechaFiltro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlFechaFiltro;
+        
+        /// <summary>
+        /// dtpFecha control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox dtpFecha;
+        
+        /// <summary>
+        /// ddlImporteFiltro control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ddlImporteFiltro;
+        
+        /// <summary>
+        /// txtImporte control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.TextBox txtImporte;
+        
+        /// <summary>
         /// dgvVentas control.
         /// </summary>
         /// <remarks>

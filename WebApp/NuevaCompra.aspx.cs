@@ -94,6 +94,7 @@ namespace WebApp
             CompraNegocio negocioCompra = new CompraNegocio();
             ProveedorNegocio negocioProveedor = new ProveedorNegocio();
             List<Detalle> listaDetalle = new List<Detalle>();
+            string response;
 
             listaDetalle = Session["listaDetalle"] != null? (List<Detalle>)Session["listaDetalle"] : null;
             if (listaDetalle != null)
@@ -102,8 +103,17 @@ namespace WebApp
                 compraLocal.Proveedor = negocioProveedor.traerProveedor(ddlProveedores.SelectedItem.Value);
                 compraLocal.Detalle = listaDetalle;
                 compraLocal.Fecha = DateTime.Now;
-                negocioCompra.agregarCompraYDetalle(compraLocal);
-                Response.Redirect("Default.aspx");
+                response = negocioCompra.agregarCompraYDetalle(compraLocal);
+                if (response == "")
+                {
+                    Session["Exito"] = "Venta generada exitosamente!";
+                    Response.Redirect("Exito.aspx");
+                }
+                else
+                {
+                    Session["Error"] = response;
+                    Response.Redirect("Error.aspx");
+                }
             }
             else
             {

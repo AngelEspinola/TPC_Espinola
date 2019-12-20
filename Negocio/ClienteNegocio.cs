@@ -74,10 +74,11 @@ namespace Negocio
             }
         }
 
-        public void agregar(Cliente nuevoCliente)
+        public string agregar(Cliente nuevoCliente)
         {
             SqlConnection conexion = new SqlConnection();
             SqlCommand comando = new SqlCommand();
+            string response = "";
             try
             {
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
@@ -99,12 +100,14 @@ namespace Negocio
             }
             catch (Exception ex)
             {
+                response = ex.Message;
                 throw ex;
             }
             finally
             {
                 conexion.Close();
             }
+            return response;
         }
 
         public void modificar(Cliente cliente)

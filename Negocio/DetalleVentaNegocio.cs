@@ -58,7 +58,6 @@ namespace Negocio
             SqlCommand comando = new SqlCommand();
             SqlDataReader lector;
             float total = 0;
-            Detalle detalleVenta;
             try
             {
                 conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
@@ -68,7 +67,6 @@ namespace Negocio
                 comando.Parameters.AddWithValue("@ID", VentaID);
                 conexion.Open();
                 lector = comando.ExecuteReader();
-                ProductoNegocio negocioProducto = new ProductoNegocio();
                 while (lector.Read())
                 {
                     total += int.Parse(lector["Cantidad"].ToString()) * float.Parse(lector["Precio"].ToString());

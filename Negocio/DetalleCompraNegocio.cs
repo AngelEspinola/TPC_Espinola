@@ -9,7 +9,7 @@ using System.Data.SqlClient;
 
 namespace Negocio
 {
-    class DetalleCompraNegocio
+    public class DetalleCompraNegocio
     {
         public List<Detalle> listar(string CompraID)
         {
@@ -40,6 +40,38 @@ namespace Negocio
                 }
 
                 return listado;
+
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                conexion.Close();
+            }
+        }
+        public float calcularTotal(string CompraID)
+        {
+            SqlConnection conexion = new SqlConnection();
+            SqlCommand comando = new SqlCommand();
+            SqlDataReader lector;
+            float total = 0;
+            try
+            {
+                conexion.ConnectionString = AccesoDatosManager.cadenaConexion;
+                comando.CommandType = System.Data.CommandType.Text;
+                comando.CommandText = "SELECT * FROM [TPC_ESPINOLA].[dbo].[DetalleCompras] WHERE [TPC_ESPINOLA].[dbo].[DetalleCompras].CompraID = @ID";
+                comando.Connection = conexion;
+                comando.Parameters.AddWithValue("@ID", CompraID);
+                conexion.Open();
+                lector = comando.ExecuteReader();
+                while (lector.Read())
+                {
+                    total += int.Parse(lector["Cantidad"].ToString()) * float.Parse(lector["Precio"].ToString());
+                }
+
+                return total;
 
             }
             catch (Exception ex)

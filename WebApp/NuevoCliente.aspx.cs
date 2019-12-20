@@ -71,27 +71,28 @@ namespace WebApp
         {
             ClienteNegocio negocioCliente = new ClienteNegocio();
             clienteLocal = new Cliente();
+            
+            string response;
+            clienteLocal.DNI = txtDNI.Text;
+            clienteLocal.Apellido = txtApellido.Text;
+            clienteLocal.Nombre = txtNombre.Text;
+            clienteLocal.Email = txtEmail.Text;
+            clienteLocal.Direccion = txtDireccion.Text;
+            clienteLocal.Ciudad = txtCiudad.Text;
+            clienteLocal.CodigoPostal = txtCodigoPostal.Text;
+            clienteLocal.FechaRegistro = txtFechaRegistro.Text;
 
-            if (Session["ClienteID" + Session.SessionID] == null)
+            response = negocioCliente.agregar(clienteLocal);
+            if (response == "")
             {
-                clienteLocal.DNI = txtDNI.Text;
-                clienteLocal.Apellido = txtApellido.Text;
-                clienteLocal.Nombre = txtNombre.Text;
-                clienteLocal.Email = txtEmail.Text;
-                clienteLocal.Direccion = txtDireccion.Text;
-                clienteLocal.Ciudad = txtCiudad.Text;
-                clienteLocal.CodigoPostal = txtCodigoPostal.Text;
-                clienteLocal.FechaRegistro = txtFechaRegistro.Text;
-
-                negocioCliente.agregar(clienteLocal);
-                clienteLocal.ID = Convert.ToInt32(negocioCliente.traerIDCliente(clienteLocal.DNI));
+                Session["Exito"] = "Cliente generado exitosamente!";
+                Response.Redirect("Exito.aspx");
             }
             else
             {
-                clienteLocal.ID = Convert.ToInt32(Session["ClienteID" + Session.SessionID]);
+                Session["Error"] = response;
+                Response.Redirect("Error.aspx");
             }
-            Response.Redirect("Clientes.aspx");
-
         }
     }
 }
