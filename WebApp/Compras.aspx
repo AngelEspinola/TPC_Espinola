@@ -107,7 +107,7 @@
         <div style="margin:10px 10px 10px 10px">
             <asp:GridView CssClass="table" ID="dgvDetalles" runat="server" AutoGenerateColumns="false">
             <Columns>    
-                <asp:BoundField DataField="ID" HeaderText="ID Prod" />
+                <asp:BoundField DataField="Producto.ID" HeaderText="ID Prod" />
                 <asp:BoundField DataField="Producto.Titulo" HeaderText="Producto" />
                 <asp:BoundField DataField="Cantidad" HeaderText="Cantidad" />
                 <asp:BoundField DataFormatString="{0:C}" DataField="Precio" HeaderText="Precio Unitario" />

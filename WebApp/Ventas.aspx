@@ -98,6 +98,13 @@
                             OnClick="ViewDetails" Text="Detalle" />
                     </ItemTemplate>
                 </asp:TemplateField>
+                    <asp:TemplateField>
+                    <ItemTemplate>
+                        <asp:ImageButton ID="PDFButton" runat="server"  
+                        ImageUrl="~/img/PDF_logo.png" OnClick="GeneratePDF" CommandArgument='<%#Bind("ID")%>'/>
+                    </ItemTemplate>
+                </asp:TemplateField>
+            
             </Columns>  
         </asp:GridView>
     </div>

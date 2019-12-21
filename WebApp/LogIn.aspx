@@ -358,7 +358,7 @@ input[type=text]:placeholder {
         <!-- Tabs Titles -->
 
         <!-- Icon -->
-            <div class="fadeIn first">
+            <div class="fadeIn first" style="margin-top:10px">
               <img src="/img/logIn_UTNLogo.png"  alt="User Icon" />
    
             </div>
@@ -373,9 +373,9 @@ input[type=text]:placeholder {
           <div id="UpdatePanel" class="fadeIn second" style="text-align:center">
             </div>  
             <!-- Remind Passowrd -->
-            <div id="formFooter">
+            <%--<div id="formFooter">
               <a class="underlineHover" href="#">Forgot Password?</a>
-            </div>
+            </div>--%>
 
       </div>
 </div>

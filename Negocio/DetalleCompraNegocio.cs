@@ -29,13 +29,15 @@ namespace Negocio
                 conexion.Open();
                 lector = comando.ExecuteReader();
                 ProductoNegocio negocioProducto = new ProductoNegocio();
-                if (lector.Read())
+                while (lector.Read())
                 {
                     detalle = new Detalle();
+                    detalle.ID = Convert.ToInt32(lector["ID"].ToString());
                     detalle.Producto = negocioProducto.traerProducto(lector["ProductoID"].ToString());
                     detalle.Cantidad = int.Parse(lector["Cantidad"].ToString());
                     detalle.Precio = float.Parse(lector["Precio"].ToString());
-
+                    detalle.SubTotal = int.Parse(lector["Cantidad"].ToString()) * float.Parse(lector["Precio"].ToString());
+                    
                     listado.Add(detalle);
                 }
 

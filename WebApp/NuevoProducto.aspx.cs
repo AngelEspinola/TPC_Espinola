@@ -7,14 +7,13 @@ using System.Web.UI.WebControls;
 using Dominio;
 using Negocio;
 
-
 namespace WebApp
 {
     public partial class NuevoProducto : System.Web.UI.Page
     {
-
         Producto productoLocal;
         int productoID;
+
         protected void Page_Load(object sender, EventArgs e)
         {
             productoID = Convert.ToInt32(Request.QueryString["idpkm"]);
@@ -32,6 +31,10 @@ namespace WebApp
                     txtStockMinimo.Text = productoLocal.StockMinimo.ToString();
                     txtStock.Text = productoLocal.Stock.ToString();
                 }
+            }
+            else
+            {
+                txtStock.Text = "0";
             }
             if (Session["user"] != null)
             {

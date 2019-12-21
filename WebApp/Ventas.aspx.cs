@@ -6,6 +6,10 @@ using System.Web.UI;
 using System.Web.UI.WebControls;
 using Negocio;
 using Dominio;
+using iTextSharp;
+using iTextSharp.text;
+using iTextSharp.text.pdf;
+using System.IO;
 
 namespace WebApp
 {
@@ -48,6 +52,8 @@ namespace WebApp
         {
             VentaNegocio negocio = new VentaNegocio();
             listaVentas = negocio.listar();
+
+            Session["listaVentas"] = listaVentas;
             dgvVentas.DataSource = listaVentas;
             dgvVentas.DataBind();
 
@@ -121,6 +127,54 @@ namespace WebApp
             txtClienteDNI.Text = string.Empty;
             txtImporte.Text = string.Empty;
             dtpFecha.Text = string.Empty;
+        }
+        protected void GeneratePDF(object sender, EventArgs e)
+        {
+            ImageButton btn = (ImageButton)sender;
+            VentaNegocio negocioVenta = new VentaNegocio();
+            Venta venta;
+            List<Venta> listaVentas = (List<Venta>)Session["listaVentas"];
+            venta = listaVentas.Find(X => X.ID == int.Parse(btn.CommandArgument.ToString()));
+            if(venta != null)
+            {
+                Document doc = new Document();
+                PdfWriter.GetInstance(doc, new FileStream("C:/PDF/"+venta.Cliente.DNI+"_"+venta.Fecha.Date.Year+venta.Fecha.Month+venta.Fecha.Day+".pdf", FileMode.Create, FileAccess.ReadWrite));
+                doc.Open();
+
+                Paragraph title = new Paragraph();
+                title.Font = FontFactory.GetFont(FontFactory.TIMES, 18f, BaseColor.BLUE);
+                title.Add("Factura");
+
+                doc.Add(new Paragraph("Cliente: " + venta.Cliente.NombreYApellido));
+                doc.Add(new Paragraph("DNI: " + venta.Cliente.DNI));
+                doc.Add(new Paragraph("Fecha: " + venta.Fecha.ToString() + "\n"));
+
+                doc.Add(new Paragraph(""));
+                PdfPTable table = new PdfPTable(3);
+
+                table.AddCell("Producto");
+
+                table.AddCell("Cantidad");
+
+                table.AddCell("Precio");
+
+                foreach (Detalle det in venta.Detalle)
+                {
+                    table.AddCell(det.Producto.Titulo);
+                    table.AddCell(det.Cantidad.ToString());
+                    table.AddCell(det.Precio.ToString("C2"));
+                }
+
+                doc.Add(table);
+
+                doc.Add(new Paragraph("\n"));
+                doc.Add(new Paragraph("Total: " + venta.Total.ToString("C2")));
+
+                doc.Close();
+
+                System.Diagnostics.Process.Start("C:/PDF/" + venta.Cliente.DNI + "_" + venta.Fecha.Date.Year + venta.Fecha.Month + venta.Fecha.Day + ".pdf");
+            }
+            //Generar PDF 
         }
     }
 }

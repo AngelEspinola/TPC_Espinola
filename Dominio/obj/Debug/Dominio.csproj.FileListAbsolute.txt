@@ -10,3 +10,6 @@ C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Dominio\obj\Debug\Dominio.csproj.CoreC
 C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Dominio\obj\Debug\Dominio.dll
 C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Dominio\obj\Debug\Dominio.pdb
 E:\Proyectos [GIT]\TPC\Dominio\obj\Debug\Dominio.csprojAssemblyReference.cache
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Dominio\bin\Debug\itextsharp.dll
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Dominio\bin\Debug\itextsharp.xml
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\Dominio\obj\Debug\Dominio.csproj.CopyComplete

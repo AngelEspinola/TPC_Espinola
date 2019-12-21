@@ -179,3 +179,5 @@ C:\Proyectos\Proyectos [GIT]\TPC_Espinola\WebApp\obj\Debug\WebApp.csproj.CopyCom
 C:\Proyectos\Proyectos [GIT]\TPC_Espinola\WebApp\obj\Debug\WebApp.dll
 C:\Proyectos\Proyectos [GIT]\TPC_Espinola\WebApp\obj\Debug\WebApp.pdb
 C:\Proyectos\Proyectos [GIT]\TPC_Espinola\WebApp\bin\AjaxControlToolkit.dll
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\WebApp\bin\itextsharp.dll
+C:\Proyectos\Proyectos [GIT]\TPC_Espinola\WebApp\bin\itextsharp.xml
