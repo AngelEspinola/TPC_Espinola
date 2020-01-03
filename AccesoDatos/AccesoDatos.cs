@@ -25,6 +25,7 @@ namespace AccesoDatos
 
         public AccesoDatosManager()
         {
+            //Comentario de prueba
             conexion = new SqlConnection(cadenaConexion);
             comando = new SqlCommand();
             comando.Connection = conexion;
